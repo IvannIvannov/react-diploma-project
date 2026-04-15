@@ -1,18 +1,33 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   return (
-    <nav style={{ padding: "16px", borderBottom: "1px solid #ccc" }}>
-      <Link to="/" style={{ marginRight: "12px" }}>
-        Home
-      </Link>
-      <Link to="/courses" style={{ marginRight: "12px" }}>
-        Courses
-      </Link>
-      <Link to="/login" style={{ marginRight: "12px" }}>
-        Login
-      </Link>
-      <Link to="/register">Register</Link>
+    <nav>
+      <Link to="/">Home</Link>
+
+      {user ? (
+        <>
+          <Link to="/dashboard">Dashboard</Link>
+          <button
+            onClick={() => {
+              logout();
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
     </nav>
   );
 };
