@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import { connectDB } from "./config/db";
 import authRoutes from "./routes/authRoutes";
+import courseRoutes from "./routes/courseRoutes";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/courses", courseRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API is running 🚀");
