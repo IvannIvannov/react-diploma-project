@@ -6,6 +6,7 @@ import { connectDB } from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import quizRoutes from "./routes/quizRoutes";
+import resultRoutes from "./routes/resultRoutes";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
 
 app.use("/api/quizzes", quizRoutes);
+
+app.use("/api/results", resultRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API is running 🚀");

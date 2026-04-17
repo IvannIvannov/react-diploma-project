@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../services/api";
 
+import { useAuth } from "../context/AuthContext";
+
 interface Lesson {
   _id: string;
   title: string;
@@ -29,6 +31,8 @@ const LessonPage = () => {
   const { courseId, lessonId } = useParams();
   const [course, setCourse] = useState<Course | null>(null);
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -76,28 +80,45 @@ const LessonPage = () => {
     }
   };
 
-  const handleAnswer = (selectedIndex: number) => {
+  const handleAnswer = async (selectedIndex: number) => {
     if (!quiz) return;
 
     setSelectedAnswer(selectedIndex);
 
     const correct = quiz.questions[currentQuestion].correctAnswer;
 
+    let newScore = score;
+
     if (selectedIndex === correct) {
-      setScore((prev) => prev + 1);
+      newScore = score + 1;
+      setScore(newScore);
     }
 
-    setTimeout(() => {
-      setSelectedAnswer(null);
+    const next = currentQuestion + 1;
 
-      const next = currentQuestion + 1;
-
-      if (next < quiz.questions.length) {
+    if (next < quiz.questions.length) {
+      setTimeout(() => {
+        setSelectedAnswer(null);
         setCurrentQuestion(next);
-      } else {
+      }, 1000);
+    } else {
+      setTimeout(() => {
         setShowResult(true);
+      }, 1000);
+
+      if (user && quiz) {
+        try {
+          await API.post("/results", {
+            userId: user.id,
+            lessonId,
+            score: newScore,
+            total: quiz.questions.length,
+          });
+        } catch (error) {
+          console.error(error);
+        }
       }
-    }, 1000);
+    }
   };
 
   const resetQuiz = () => {
