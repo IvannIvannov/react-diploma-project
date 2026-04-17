@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../services/api";
 
+import { Link } from "react-router-dom";
+
 interface Lesson {
   _id: string;
   title: string;
@@ -39,8 +41,9 @@ const CourseDetailsPage = () => {
 
       {course.lessons.map((lesson) => (
         <div key={lesson._id}>
-          <h4>{lesson.title}</h4>
-          <p>{lesson.content}</p>
+          <Link to={`/courses/${course._id}/lessons/${lesson._id}`}>
+            <h4>{lesson.title}</h4>
+          </Link>
         </div>
       ))}
     </div>

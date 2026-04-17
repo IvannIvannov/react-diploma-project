@@ -10,6 +10,7 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 import QuizPage from "./pages/QuizPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import LessonPage from "./pages/LessonPage";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
         <Route path="/courses/:id" element={<CourseDetailsPage />} />
         <Route path="/quiz/:id" element={<QuizPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/courses/:courseId/lessons/:lessonId"
+          element={<LessonPage />}
+        />
       </Routes>
     </BrowserRouter>
   );
