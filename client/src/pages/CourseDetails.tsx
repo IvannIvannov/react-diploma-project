@@ -1,5 +1,19 @@
+import { useParams } from "react-router-dom";
+import { courses } from "../services/courseService";
+
 const CourseDetails = () => {
-  return <h1>Course Details</h1>;
+  const { id } = useParams();
+
+  const course = courses.find((c) => c.id === id);
+
+  if (!course) return <h1>Course not found</h1>;
+
+  return (
+    <div>
+      <h1>{course.title}</h1>
+      <p>{course.description}</p>
+    </div>
+  );
 };
 
 export default CourseDetails;
