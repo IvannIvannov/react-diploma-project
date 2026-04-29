@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 type User = {
   email: string;
+  role: "user" | "admin";
 };
 
 type AuthContextType = {
@@ -19,7 +20,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const login = (email: string) => {
-    const userData = { email };
+    const userData: User = {
+      email,
+      role: email === "admin@gmail.com" ? "admin" : "user",
+    };
+
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
   };

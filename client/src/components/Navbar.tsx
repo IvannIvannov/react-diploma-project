@@ -12,7 +12,9 @@ const Navbar = () => {
 
       {user ? (
         <>
-          <span>{user.email}</span>
+          <span>
+            {user.email} ({user.role})
+          </span>
           <button onClick={logout}>Logout</button>
         </>
       ) : (
