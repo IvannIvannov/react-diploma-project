@@ -12,7 +12,12 @@ export const CoursesProvider = ({
       const stored = localStorage.getItem("courses");
 
       if (stored) {
-        return JSON.parse(stored);
+        const parsed: Course[] = JSON.parse(stored);
+
+        return parsed.map((course) => ({
+          ...course,
+          quizzes: course.quizzes || [],
+        }));
       }
 
       return [
@@ -29,8 +34,7 @@ export const CoursesProvider = ({
           quizzes: [],
         },
       ];
-    } catch (error) {
-      console.error("Error loading courses:", error);
+    } catch {
       return [];
     }
   });
@@ -78,7 +82,7 @@ export const CoursesProvider = ({
           ? {
               ...course,
               quizzes: [
-                ...course.quizzes,
+                ...(course.quizzes || []), // 👉 FIX
                 {
                   id: Date.now().toString(),
                   ...quiz,

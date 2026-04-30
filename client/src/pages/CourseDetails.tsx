@@ -19,6 +19,10 @@ const CourseDetails = () => {
       <Link to={`/courses/${course.id}/quiz`}>
         <button>Start Quiz</button>
       </Link>
+
+      <Link to={`/add-quiz/${course.id}`}>
+        <button>Add Quiz</button>
+      </Link>
     </div>
   );
 };

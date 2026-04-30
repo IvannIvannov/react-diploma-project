@@ -12,6 +12,7 @@ import CreateCourse from "../pages/CreateCourse";
 import AdminRoute from "./AdminRoute";
 import EditCourse from "../pages/EditCourse";
 import Quiz from "../pages/Quiz";
+import AddQuiz from "../pages/AddQuiz";
 
 const AppRoutes = () => {
   return (
@@ -41,6 +42,14 @@ const AppRoutes = () => {
           />
           <Route path="/edit-course/:id" element={<EditCourse />} />
           <Route path="/courses/:id/quiz" element={<Quiz />} />
+          <Route
+            path="/add-quiz/:courseId"
+            element={
+              <AdminRoute>
+                <AddQuiz />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
