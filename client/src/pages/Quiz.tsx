@@ -10,6 +10,7 @@ const Quiz = () => {
 
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   if (!course || course.quizzes.length === 0) return <h1>No quiz available</h1>;
 
@@ -17,15 +18,33 @@ const Quiz = () => {
 
   const handleAnswer = (index: number) => {
     if (index === quiz.correctAnswer) {
-      setScore(score + 1);
+      setScore((prev) => prev + 1);
     }
 
     if (current + 1 < course.quizzes.length) {
       setCurrent(current + 1);
     } else {
-      alert(`Your score: ${score + 1}/${course.quizzes.length}`);
+      setFinished(true);
     }
   };
+
+  if (finished) {
+    const percentage = Math.round((score / course.quizzes.length) * 100);
+
+    return (
+      <div>
+        <h1>Quiz Finished 🎉</h1>
+
+        <h2>
+          Score: {score} / {course.quizzes.length}
+        </h2>
+
+        <h3>{percentage}%</h3>
+
+        {percentage >= 70 ? <p>Great job! 👏</p> : <p>Keep learning! 💪</p>}
+      </div>
+    );
+  }
 
   return (
     <div>
