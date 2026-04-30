@@ -1,16 +1,23 @@
 import { useState } from "react";
 
+import { addCourse } from "../services/courseService";
+
+import { useNavigate } from "react-router-dom";
+
 const CreateCourse = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log({
-      title,
-      description,
-    });
+    addCourse({ title, description });
+
+    setTitle("");
+    setDescription("");
+
+    navigate("/courses");
   };
 
   return (

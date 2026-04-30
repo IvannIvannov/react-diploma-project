@@ -1,4 +1,5 @@
-export const courses = [
+// eslint-disable-next-line prefer-const
+let courses = [
   {
     id: "1",
     title: "React Basics",
@@ -10,3 +11,17 @@ export const courses = [
     description: "Hooks, Context, Performance",
   },
 ];
+
+export const getCourses = () => courses;
+
+export const addCourse = (course: {
+  title: string;
+  description: string;
+}) => {
+  const newCourse = {
+    id: Date.now().toString(),
+    ...course,
+  };
+
+  courses.push(newCourse);
+};

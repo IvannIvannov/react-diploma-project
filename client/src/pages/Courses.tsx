@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { courses } from "../services/courseService";
+import { getCourses } from "../services/courseService";
 
 const Courses = () => {
+  const [courses] = useState(getCourses());
+
   return (
     <div>
       <h1>Courses</h1>
 
       {courses.map((course) => (
-        <div key={course.id} style={{ marginBottom: "20px" }}>
+        <div key={course.id}>
           <h3>{course.title}</h3>
           <p>{course.description}</p>
           <Link to={`/courses/${course.id}`}>View Details</Link>
