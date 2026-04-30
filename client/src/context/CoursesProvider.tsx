@@ -20,11 +20,13 @@ export const CoursesProvider = ({
           id: "1",
           title: "React Basics",
           description: "Learn the fundamentals of React",
+          quizzes: [],
         },
         {
           id: "2",
           title: "Advanced React",
           description: "Hooks, Context, Performance",
+          quizzes: [],
         },
       ];
     } catch (error) {
@@ -41,6 +43,7 @@ export const CoursesProvider = ({
     const newCourse = {
       id: Date.now().toString(),
       ...course,
+      quizzes: [],
     };
 
     setCourses((prev) => [...prev, newCourse]);
@@ -61,9 +64,41 @@ export const CoursesProvider = ({
     );
   };
 
+  const addQuiz = (
+    courseId: string,
+    quiz: {
+      question: string;
+      options: string[];
+      correctAnswer: number;
+    },
+  ) => {
+    setCourses((prev) =>
+      prev.map((course) =>
+        course.id === courseId
+          ? {
+              ...course,
+              quizzes: [
+                ...course.quizzes,
+                {
+                  id: Date.now().toString(),
+                  ...quiz,
+                },
+              ],
+            }
+          : course,
+      ),
+    );
+  };
+
   return (
     <CoursesContext.Provider
-      value={{ courses, addCourse, deleteCourse, updateCourse }}
+      value={{
+        courses,
+        addCourse,
+        deleteCourse,
+        updateCourse,
+        addQuiz,
+      }}
     >
       {children}
     </CoursesContext.Provider>

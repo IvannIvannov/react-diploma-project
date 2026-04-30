@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import { useCourses } from "../context/useCourses";
 
 const CourseDetails = () => {
@@ -13,6 +15,10 @@ const CourseDetails = () => {
     <div>
       <h1>{course.title}</h1>
       <p>{course.description}</p>
+
+      <Link to={`/courses/${course.id}/quiz`}>
+        <button>Start Quiz</button>
+      </Link>
     </div>
   );
 };
