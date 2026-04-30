@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-import { addCourse } from "../services/courseService";
+import { useCourses } from "../context/useCourses";
 
 import { useNavigate } from "react-router-dom";
 
 const CreateCourse = () => {
+  const { addCourse } = useCourses();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     addCourse({ title, description });

@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { getCourses } from "../services/courseService";
+import { useCourses } from "../context/useCourses";
 
 const Courses = () => {
-  const [courses] = useState(getCourses());
+  const { courses } = useCourses();
 
   return (
     <div>
