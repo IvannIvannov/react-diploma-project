@@ -50,8 +50,21 @@ export const CoursesProvider = ({
     setCourses((prev) => prev.filter((course) => course.id !== id));
   };
 
+  const updateCourse = (
+    id: string,
+    updatedData: { title: string; description: string },
+  ) => {
+    setCourses((prev) =>
+      prev.map((course) =>
+        course.id === id ? { ...course, ...updatedData } : course,
+      ),
+    );
+  };
+
   return (
-    <CoursesContext.Provider value={{ courses, addCourse, deleteCourse }}>
+    <CoursesContext.Provider
+      value={{ courses, addCourse, deleteCourse, updateCourse }}
+    >
       {children}
     </CoursesContext.Provider>
   );

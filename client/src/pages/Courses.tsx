@@ -16,6 +16,8 @@ const Courses = () => {
 
           <Link to={`/courses/${course.id}`}>View Details</Link>
 
+          <Link to={`/edit-course/${course.id}`}>Edit</Link>
+
           <button onClick={() => deleteCourse(course.id)}>Delete</button>
         </div>
       ))}

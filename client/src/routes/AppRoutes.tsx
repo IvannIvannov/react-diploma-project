@@ -10,6 +10,7 @@ import Layout from "../components/Layout";
 import ProtectedRoute from "./ProtectedRoute";
 import CreateCourse from "../pages/CreateCourse";
 import AdminRoute from "./AdminRoute";
+import EditCourse from "../pages/EditCourse";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
               </AdminRoute>
             }
           />
+          <Route path="/edit-course/:id" element={<EditCourse />} />
         </Routes>
       </Layout>
     </BrowserRouter>
