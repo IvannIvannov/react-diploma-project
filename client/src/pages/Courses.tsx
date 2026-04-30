@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+
 import { useCourses } from "../context/useCourses";
 
 const Courses = () => {
-  const { courses } = useCourses();
+  const { courses, deleteCourse } = useCourses();
 
   return (
     <div>
@@ -12,7 +13,10 @@ const Courses = () => {
         <div key={course.id}>
           <h3>{course.title}</h3>
           <p>{course.description}</p>
+
           <Link to={`/courses/${course.id}`}>View Details</Link>
+
+          <button onClick={() => deleteCourse(course.id)}>Delete</button>
         </div>
       ))}
     </div>

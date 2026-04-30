@@ -7,7 +7,6 @@ export const CoursesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  // 👉 Зареждане от localStorage (само веднъж)
   const [courses, setCourses] = useState<Course[]>(() => {
     try {
       const stored = localStorage.getItem("courses");
@@ -34,12 +33,10 @@ export const CoursesProvider = ({
     }
   });
 
-  // 👉 Запис в localStorage при всяка промяна
   useEffect(() => {
     localStorage.setItem("courses", JSON.stringify(courses));
   }, [courses]);
 
-  // 👉 Добавяне на курс
   const addCourse = (course: { title: string; description: string }) => {
     const newCourse = {
       id: Date.now().toString(),
@@ -49,8 +46,12 @@ export const CoursesProvider = ({
     setCourses((prev) => [...prev, newCourse]);
   };
 
+  const deleteCourse = (id: string) => {
+    setCourses((prev) => prev.filter((course) => course.id !== id));
+  };
+
   return (
-    <CoursesContext.Provider value={{ courses, addCourse }}>
+    <CoursesContext.Provider value={{ courses, addCourse, deleteCourse }}>
       {children}
     </CoursesContext.Provider>
   );

@@ -9,6 +9,7 @@ export type Course = {
 export type CoursesContextType = {
   courses: Course[];
   addCourse: (course: { title: string; description: string }) => void;
+  deleteCourse: (id: string) => void;
 };
 
 export const CoursesContext = createContext<CoursesContextType | null>(null);
