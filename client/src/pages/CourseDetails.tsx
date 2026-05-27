@@ -14,58 +14,58 @@ const CourseDetails = () => {
 
   return (
     <main className="course-details-page">
-      <section className="course-details-hero">
-        <p className="course-details-label">Learning module</p>
-        <h1>{course.title}</h1>
-        <p>{course.description}</p>
+      <section className="course-workspace">
+        <div className="course-left">
+          <p className="course-eyebrow">Learning module</p>
+          <h1>{course.title}</h1>
+          <p className="course-description">{course.description}</p>
 
-      </section>
-
-      <section className="course-video-section">
-        {course.videoUrl ? (
-          <iframe
-            src={course.videoUrl}
-            title={course.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : (
-          <div className="video-placeholder">
-            <h2>No video available</h2>
-            <p>This course does not have a video lesson yet.</p>
+          <div className="course-lesson-box">
+            <span>Lesson overview</span>
+            <h2>What this module covers</h2>
+            <p>{course.content}</p>
           </div>
-        )}
-      </section>
 
-      <section className="course-details-grid">
-        <article className="course-learning-card">
-          <span>Module overview</span>
-          <h2>What you will learn</h2>
-          <p>{course.content}</p>
-        </article>
+          {course.documentationUrl && (
+            <a
+              className="documentation-card"
+              href={course.documentationUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Official docs</span>
+              <strong>Open React documentation →</strong>
+            </a>
+          )}
+        </div>
 
-        <aside className="course-action-card">
-          <span>Resources</span>
-          <h2>Continue learning</h2>
-          <p>
-            Access official React resources and test your knowledge when you are
-            ready.
-          </p>
-
-          <div className="course-action-buttons">
-            {course.documentationUrl && (
-              <a
-                href={course.documentationUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Documentation
-              </a>
+        <aside className="course-right">
+          <div className="video-card">
+            {course.videoUrl ? (
+              <iframe
+                src={course.videoUrl}
+                title={course.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div className="video-placeholder">No video available</div>
             )}
+          </div>
 
-            <Link to={`/courses/${course.id}/quiz`}>Start Quiz</Link>
+          <div className="quiz-card">
+            <span>Practice</span>
+            <h2>Ready for the quiz?</h2>
+            <p>
+              Complete the module and test your understanding with interactive
+              questions.
+            </p>
 
-            <Link to={`/add-quiz/${course.id}`}>Add Quiz</Link>
+            <div className="quiz-card-actions">
+              <Link to={`/courses/${course.id}/quiz`}>Start Quiz</Link>
+
+              <Link to={`/add-quiz/${course.id}`}>Add Quiz</Link>
+            </div>
           </div>
         </aside>
       </section>
