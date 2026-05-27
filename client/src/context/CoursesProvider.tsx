@@ -23,14 +23,44 @@ export const CoursesProvider = ({
       return [
         {
           id: "1",
-          title: "React Basics",
-          description: "Learn the fundamentals of React",
+          title: "React Fundamentals",
+          description:
+            "Learn the core concepts of React, including components, JSX, props and state.",
           quizzes: [],
         },
         {
           id: "2",
-          title: "Advanced React",
-          description: "Hooks, Context, Performance",
+          title: "React Hooks",
+          description:
+            "Understand useState, useEffect and how hooks simplify React logic.",
+          quizzes: [],
+        },
+        {
+          id: "3",
+          title: "React Router",
+          description:
+            "Create multi-page React applications with dynamic and protected routes.",
+          quizzes: [],
+        },
+        {
+          id: "4",
+          title: "Authentication in React",
+          description:
+            "Build login and register systems using authentication and protected routes.",
+          quizzes: [],
+        },
+        {
+          id: "5",
+          title: "State Management",
+          description:
+            "Learn Context API, reusable hooks and managing global application state.",
+          quizzes: [],
+        },
+        {
+          id: "6",
+          title: "React Project Practice",
+          description:
+            "Practice building real React applications with quizzes, dashboards and routing.",
           quizzes: [],
         },
       ];
