@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+import { loginUser } from "../services/authService";
+
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -9,11 +11,18 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    login(email);
-    navigate("/dashboard");
+    const result = await loginUser({ email, password });
+
+    if (result.token && result.user) {
+      localStorage.setItem("token", result.token);
+      login(result.user.email);
+      navigate("/dashboard");
+    } else {
+      alert(result.error || "Invalid email or password");
+    }
   };
 
   return (
