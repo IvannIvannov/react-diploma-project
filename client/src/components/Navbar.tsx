@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
+import {
+  HiOutlineHome,
+  HiOutlineBookOpen,
+  HiOutlineSquares2X2,
+  HiOutlineArrowRightOnRectangle,
+  HiOutlineUser,
+} from "react-icons/hi2";
+
 import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
     <header className="navbar">
@@ -22,7 +34,6 @@ const Navbar = () => {
           <button
             className="burger-button"
             onClick={() => setIsOpen((prev) => !prev)}
-            aria-label="Toggle menu"
           >
             <span />
             <span />
@@ -32,12 +43,17 @@ const Navbar = () => {
           {isOpen && (
             <nav className="dropdown-menu">
               <Link to="/" onClick={closeMenu}>
+                <HiOutlineHome />
                 Home
               </Link>
+
               <Link to="/courses" onClick={closeMenu}>
+                <HiOutlineBookOpen />
                 Courses
               </Link>
+
               <Link to="/dashboard" onClick={closeMenu}>
+                <HiOutlineSquares2X2 />
                 Dashboard
               </Link>
 
@@ -56,15 +72,19 @@ const Navbar = () => {
                       closeMenu();
                     }}
                   >
+                    <HiOutlineArrowRightOnRectangle />
                     Logout
                   </button>
                 </>
               ) : (
                 <>
                   <Link to="/login" onClick={closeMenu}>
+                    <HiOutlineUser />
                     Login
                   </Link>
+
                   <Link to="/register" onClick={closeMenu}>
+                    <HiOutlineUser />
                     Register
                   </Link>
                 </>
