@@ -1,5 +1,9 @@
 .course-details-page {
-    min-height: 100vh;
+    min-height: calc(100vh - 120px);
+
+    display: flex;
+    align-items: flex-start;
+
     background: #f7f5f1;
     padding: 80px 32px;
 }
@@ -7,6 +11,7 @@
 .course-workspace {
     max-width: 1220px;
     margin: 0 auto;
+    width: 100%;
 
     display: grid;
     grid-template-columns: 0.95fr 1.05fr;
@@ -54,6 +59,7 @@
     border-radius: 30px;
     padding: 32px;
     box-shadow: 0 22px 55px rgba(0, 0, 0, 0.04);
+    margin-top: 30px;
 }
 
 .course-lesson-box span,
@@ -86,21 +92,34 @@
     line-height: 1.75;
 }
 
-.documentation-card {
-    display: block;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
 .documentation-card strong {
+    position: relative;
+
+    display: inline-block;
+
     color: #111;
+
     font-size: 22px;
     letter-spacing: -0.6px;
 }
 
-.documentation-card:hover {
-    transform: translateY(-4px);
-    background: #fbfaf7;
+.documentation-card strong::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #111;
+
+    transition: 0.3s ease;
+}
+
+.documentation-card:hover strong::after {
+    width: 100%;
 }
 
 .video-card {
