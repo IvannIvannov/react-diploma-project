@@ -14,79 +14,61 @@ const CourseDetails = () => {
 
   return (
     <main className="course-details-page">
-      <div className="course-details-container">
-        <section className="course-details-header">
-          <p className="course-details-label">Learning module</p>
+      <section className="course-details-hero">
+        <p className="course-details-label">Learning module</p>
+        <h1>{course.title}</h1>
+        <p>{course.description}</p>
 
-          <h1>{course.title}</h1>
+      </section>
 
-          <p>{course.description}</p>
-
-          <div className="course-meta-row">
-            <span>{course.level}</span>
-            <span>{course.duration}</span>
-            <span>{course.quizzes.length} quiz questions</span>
+      <section className="course-video-section">
+        {course.videoUrl ? (
+          <iframe
+            src={course.videoUrl}
+            title={course.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <div className="video-placeholder">
+            <h2>No video available</h2>
+            <p>This course does not have a video lesson yet.</p>
           </div>
-        </section>
+        )}
+      </section>
 
-        <section className="course-content-grid">
-          <article className="course-video-card">
-            {course.videoUrl ? (
-              <iframe
-                src={course.videoUrl}
-                title={course.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <div className="course-video-content">
-                <h2>No video available</h2>
-                <p>This course does not have a video lesson yet.</p>
-              </div>
+      <section className="course-details-grid">
+        <article className="course-learning-card">
+          <span>Module overview</span>
+          <h2>What you will learn</h2>
+          <p>{course.content}</p>
+        </article>
+
+        <aside className="course-action-card">
+          <span>Resources</span>
+          <h2>Continue learning</h2>
+          <p>
+            Access official React resources and test your knowledge when you are
+            ready.
+          </p>
+
+          <div className="course-action-buttons">
+            {course.documentationUrl && (
+              <a
+                href={course.documentationUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Documentation
+              </a>
             )}
 
-            <div className="course-video-content">
-              <h2>About this module</h2>
-              <p>{course.content}</p>
-            </div>
-          </article>
+            <Link to={`/courses/${course.id}/quiz`}>Start Quiz</Link>
 
-          <aside className="course-side-column">
-            <div className="course-info-card">
-              <h2>Learning resources</h2>
-
-              <p> Explore additional learning materials and official React documentation.</p>
-
-              {course.documentationUrl && (
-                <a
-                  className="documentation-link"
-                  href={course.documentationUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open documentation →
-                </a>
-              )}
-            </div>
-
-            <div className="course-quiz-card">
-              <h2>Quiz</h2>
-
-              <p>Test your knowledge after completing the lesson.</p>
-
-              <div className="quiz-actions">
-                <Link to={`/courses/${course.id}/quiz`} className="quiz-button">
-                  Start Quiz
-                </Link>
-
-                <Link to={`/add-quiz/${course.id}`} className="add-quiz-button">
-                  Add Quiz
-                </Link>
-              </div>
-            </div>
-          </aside>
-        </section>
-      </div>
+            <Link to={`/add-quiz/${course.id}`}>Add Quiz</Link>
+          </div>
+        </aside>
+      </section>
     </main>
   );
 };
