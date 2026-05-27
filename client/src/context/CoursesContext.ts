@@ -11,6 +11,12 @@ export type Course = {
   id: string;
   title: string;
   description: string;
+  level: string;
+  duration: string;
+  videoUrl: string;
+  documentationUrl: string;
+  topics: string[];
+  content: string;
   quizzes: Quiz[];
 };
 

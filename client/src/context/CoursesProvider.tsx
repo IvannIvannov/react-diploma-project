@@ -25,42 +25,28 @@ export const CoursesProvider = ({
           id: "1",
           title: "React Fundamentals",
           description:
-            "Learn the core concepts of React, including components, JSX, props and state.",
+            "Learn the core concepts of React, including JSX, components, props and state.",
+          level: "Beginner",
+          duration: "45 min",
+          videoUrl: "https://www.youtube.com/embed/SqcY0GlETPk",
+          documentationUrl: "https://react.dev/learn",
+          topics: ["JSX", "Components", "Props", "State"],
+          content:
+            "This module introduces the foundation of React. You will learn how React applications are structured, how components work and how data is passed through props and state.",
           quizzes: [],
         },
         {
           id: "2",
           title: "React Hooks",
           description:
-            "Understand useState, useEffect and how hooks simplify React logic.",
-          quizzes: [],
-        },
-        {
-          id: "3",
-          title: "React Router",
-          description:
-            "Create multi-page React applications with dynamic and protected routes.",
-          quizzes: [],
-        },
-        {
-          id: "4",
-          title: "Authentication in React",
-          description:
-            "Build login and register systems using authentication and protected routes.",
-          quizzes: [],
-        },
-        {
-          id: "5",
-          title: "State Management",
-          description:
-            "Learn Context API, reusable hooks and managing global application state.",
-          quizzes: [],
-        },
-        {
-          id: "6",
-          title: "React Project Practice",
-          description:
-            "Practice building real React applications with quizzes, dashboards and routing.",
+            "Understand useState, useEffect and how hooks help manage logic in React applications.",
+          level: "Intermediate",
+          duration: "50 min",
+          videoUrl: "https://www.youtube.com/embed/TNhaISOUy6Q",
+          documentationUrl: "https://react.dev/reference/react",
+          topics: ["useState", "useEffect", "Custom Hooks"],
+          content:
+            "This module explains how hooks allow functional components to manage state, side effects and reusable logic.",
           quizzes: [],
         },
       ];
@@ -77,6 +63,12 @@ export const CoursesProvider = ({
     const newCourse = {
       id: Date.now().toString(),
       ...course,
+      level: "Beginner",
+      duration: "30 min",
+      videoUrl: "",
+      documentationUrl: "",
+      topics: [],
+      content: "",
       quizzes: [],
     };
 
@@ -112,7 +104,7 @@ export const CoursesProvider = ({
           ? {
               ...course,
               quizzes: [
-                ...(course.quizzes || []), // 👉 FIX
+                ...(course.quizzes || []), 
                 {
                   id: Date.now().toString(),
                   ...quiz,
