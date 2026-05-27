@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <>
       <Navbar />
 
-      <main style={{ padding: "20px" }}>{children}</main>
+      <main>{children}</main>
 
       <Footer />
     </>
