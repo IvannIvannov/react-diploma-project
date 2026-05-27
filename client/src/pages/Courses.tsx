@@ -9,19 +9,19 @@ const Courses = () => {
     <main className="courses-page">
       <section className="courses-layout">
         <aside className="courses-sidebar">
-          <p className="courses-label">Course library</p>
+          <p className="courses-label">Библиотека с курсове</p>
 
-          <h1>React learning modules.</h1>
+          <h1>Модули за обучение по React.</h1>
 
           <p className="courses-description">
-            Follow structured courses, complete quizzes and build your React
-            knowledge step by step.
+            Следвай структурирани курсове, решавай тестове и развивай знанията
+            си по React стъпка по стъпка.
           </p>
 
           <div className="courses-summary">
             <div>
               <strong>{courses.length}</strong>
-              <span>Total courses</span>
+              <span>Общо курсове</span>
             </div>
 
             <div>
@@ -31,21 +31,22 @@ const Courses = () => {
                   0,
                 )}
               </strong>
-              <span>Total quizzes</span>
+
+              <span>Общо тестове</span>
             </div>
           </div>
         </aside>
 
         <section className="courses-board">
           {courses.length === 0 ? (
-            <div className="empty-courses">No courses available yet.</div>
+            <div className="empty-courses">Все още няма налични курсове.</div>
           ) : (
             courses.map((course, index) => (
               <article className="course-module" key={course.id}>
                 <div className="course-module-header">
-                  <span>Module {String(index + 1).padStart(2, "0")}</span>
+                  <span>Модул {String(index + 1).padStart(2, "0")}</span>
 
-                  <span>{course.quizzes?.length || 0} quizzes</span>
+                  <span>{course.quizzes?.length || 0} теста</span>
                 </div>
 
                 <h3>{course.title}</h3>
@@ -53,10 +54,10 @@ const Courses = () => {
                 <p>{course.description}</p>
 
                 <div className="course-module-footer">
-                  <Link to={`/courses/${course.id}`}>View course</Link>
+                  <Link to={`/courses/${course.id}`}>Отвори курса</Link>
 
                   <button onClick={() => deleteCourse(course.id)}>
-                    Delete
+                    Изтрий
                   </button>
                 </div>
               </article>

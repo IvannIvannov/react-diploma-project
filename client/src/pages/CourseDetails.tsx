@@ -9,20 +9,24 @@ const CourseDetails = () => {
   const course = courses.find((c) => c.id === id);
 
   if (!course) {
-    return <h1>Course not found</h1>;
+    return <h1>Курсът не е намерен</h1>;
   }
 
   return (
     <main className="course-details-page">
       <section className="course-workspace">
         <div className="course-left">
-          <p className="course-eyebrow">Learning module</p>
+          <p className="course-eyebrow">Учебен модул</p>
+
           <h1>{course.title}</h1>
+
           <p className="course-description">{course.description}</p>
 
           <div className="course-lesson-box">
-            <span>Lesson overview</span>
-            <h2>What this module covers</h2>
+            <span>Преглед на урока</span>
+
+            <h2>Какво ще научиш в този модул</h2>
+
             <p>{course.content}</p>
           </div>
 
@@ -33,8 +37,9 @@ const CourseDetails = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <span>Official docs</span>
-              <strong>Open React documentation →</strong>
+              <span>Официална документация</span>
+
+              <strong>Отвори React документацията →</strong>
             </a>
           )}
         </div>
@@ -49,22 +54,24 @@ const CourseDetails = () => {
                 allowFullScreen
               />
             ) : (
-              <div className="video-placeholder">No video available</div>
+              <div className="video-placeholder">Няма налично видео</div>
             )}
           </div>
 
           <div className="quiz-card">
-            <span>Practice</span>
-            <h2>Ready for the quiz?</h2>
+            <span>Практика</span>
+
+            <h2>Готов/а ли си за теста?</h2>
+
             <p>
-              Complete the module and test your understanding with interactive
-              questions.
+              Прегледай материала и стартирай теста, когато си готов/а да
+              провериш знанията си.
             </p>
 
             <div className="quiz-card-actions">
-              <Link to={`/courses/${course.id}/quiz`}>Start Quiz</Link>
+              <Link to={`/courses/${course.id}/quiz`}>Стартирай тест</Link>
 
-              <Link to={`/add-quiz/${course.id}`}>Add Quiz</Link>
+              <Link to={`/add-quiz/${course.id}`}>Добави тест</Link>
             </div>
           </div>
         </aside>

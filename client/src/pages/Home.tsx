@@ -5,21 +5,21 @@ const Home = () => {
   const feedbacks = [
     {
       id: 1,
-      name: "Maria Petrova",
-      role: "Beginner React student",
-      text: "The platform helped me understand React step by step. The quizzes made it much easier to check what I actually learned.",
+      name: "Мария Петрова",
+      role: "Начинаещ React курсист",
+      text: "Платформата ми помогна да разбера React стъпка по стъпка. Тестовете направиха ученето много по-интересно и полезно.",
     },
     {
       id: 2,
-      name: "Ivan Georgiev",
-      role: "Computer science student",
-      text: "I liked the clean structure of the courses. It feels simple, focused and useful for independent learning.",
+      name: "Иван Георгиев",
+      role: "Студент по компютърни науки",
+      text: "Много ми хареса изчистената структура на курсовете. Всичко е подредено и удобно за самостоятелно обучение.",
     },
     {
       id: 3,
-      name: "Elena Dimitrova",
-      role: "Frontend enthusiast",
-      text: "The combination of lessons, progress and quizzes makes the learning process much more motivating.",
+      name: "Елена Димитрова",
+      role: "Frontend ентусиаст",
+      text: "Комбинацията от уроци, практика и тестове прави процеса на обучение много по-мотивиращ.",
     },
   ];
 
@@ -27,49 +27,50 @@ const Home = () => {
     <main className="home-page">
       <section className="hero-section">
         <div>
-          <p className="hero-label">React self-learning platform</p>
+          <p className="hero-label">Платформа за самообучение по React</p>
 
-          <h1 className="hero-title">Learn. Practice. Build.</h1>
+          <h1 className="hero-title">Учи. Практикувай. Създавай.</h1>
 
           <p className="hero-description">
-            Master React step by step with structured courses, interactive
-            quizzes and practical exercises designed for independent learning.
+            Усвои React стъпка по стъпка чрез структурирани курсове,
+            интерактивни тестове и практически упражнения, създадени за
+            самостоятелно обучение.
           </p>
 
           <div className="hero-actions">
             <Link to="/courses" className="primary-button">
-              Browse Courses →
+              Разгледай курсовете →
             </Link>
 
             <Link to="/register" className="secondary-button">
-              Create Account
+              Създай акаунт
             </Link>
           </div>
         </div>
 
         <div className="hero-card">
           <div className="hero-card-top">
-            <span className="hero-card-badge">React Basics</span>
+            <span className="hero-card-badge">Основи на React</span>
 
-            <span className="hero-card-progress">72% completed</span>
+            <span className="hero-card-progress">72% завършено</span>
           </div>
 
           <div className="lesson-preview">
-            <h3>Current module</h3>
+            <h3>Текущ модул</h3>
 
             <p>
-              Components, props, state management and building reusable UI
-              structures.
+              Компоненти, props, state управление и изграждане на преизползваеми
+              UI структури.
             </p>
 
             <div className="lesson-list">
               <div className="lesson-item">
-                <span>Components</span>
+                <span>Компоненти</span>
                 <span>✓</span>
               </div>
 
               <div className="lesson-item">
-                <span>Props & State</span>
+                <span>Props и State</span>
                 <span>✓</span>
               </div>
 
@@ -85,84 +86,81 @@ const Home = () => {
       <section className="stats-section">
         <div className="stat-card">
           <strong>12+</strong>
-          <span>React lessons</span>
+          <span>React урока</span>
         </div>
 
         <div className="stat-card">
           <strong>30+</strong>
-          <span>Quiz questions</span>
+          <span>Тестови въпроса</span>
         </div>
 
         <div className="stat-card">
           <strong>100%</strong>
-          <span>Self-paced learning</span>
+          <span>Самостоятелно обучение</span>
         </div>
       </section>
 
       <section className="features-section">
         <div className="section-heading">
-          <p>How it works</p>
+          <p>Как работи</p>
 
-          <h2>Everything you need to learn React independently.</h2>
+          <h2>Всичко необходимо за самостоятелно обучение по React.</h2>
         </div>
 
         <div className="features-grid">
           <div className="feature-card">
             <span>01</span>
 
-            <h3>Structured lessons</h3>
+            <h3>Структурирани уроци</h3>
 
             <p>
-              Follow a clear learning path from React fundamentals to more
-              advanced concepts like hooks, routing and state management.
+              Следвай ясен учебен път от основите на React до по-сложни
+              концепции като hooks, routing и управление на state.
             </p>
           </div>
 
           <div className="feature-card">
             <span>02</span>
 
-            <h3>Practice with quizzes</h3>
+            <h3>Практика с тестове</h3>
 
             <p>
-              Test your knowledge after each course and get immediate feedback
-              based on your answers.
+              Провери знанията си след всеки курс и получи незабавна обратна
+              връзка.
             </p>
           </div>
 
           <div className="feature-card">
             <span>03</span>
 
-            <h3>Track your progress</h3>
+            <h3>Проследяване на прогреса</h3>
 
-            <p>
-              Continue learning at your own pace and monitor your improvement
-              throughout the platform.
-            </p>
+            <p>Учи със собствено темпо и следи развитието си в платформата.</p>
           </div>
         </div>
       </section>
 
       <section className="learning-path-section">
         <div>
-          <p className="hero-label">Learning path</p>
+          <p className="hero-label">Учебен път</p>
 
-          <h2>From beginner to confident React developer.</h2>
+          <h2>От начинаещ до уверен React разработчик.</h2>
 
           <p>
-            The platform is designed to guide learners through the most
-            important React topics step by step.
+            Платформата е създадена да води обучаващите се през най-важните
+            React теми стъпка по стъпка.
           </p>
         </div>
 
         <div className="path-list">
           <div className="path-item">
             <strong>01</strong>
-            <span>React Components</span>
+            <span>React Компоненти</span>
           </div>
 
           <div className="path-item">
             <strong>02</strong>
-            <span>Props and State</span>
+            <span>Props и State</span>
           </div>
 
           <div className="path-item">
@@ -172,16 +170,16 @@ const Home = () => {
 
           <div className="path-item">
             <strong>04</strong>
-            <span>Routing and Authentication</span>
+            <span>Routing и Автентикация</span>
           </div>
         </div>
       </section>
 
       <section className="feedback-section">
         <div className="section-heading">
-          <p>Student feedback</p>
+          <p>Отзиви</p>
 
-          <h2>What learners say about ReactLearn.</h2>
+          <h2>Какво казват потребителите за ReactLearn.</h2>
         </div>
 
         <div className="feedback-grid">
@@ -203,15 +201,15 @@ const Home = () => {
       </section>
 
       <section className="cta-section">
-        <h2>Ready to start learning React?</h2>
+        <h2>Готов/а ли си да започнеш с React?</h2>
 
         <p>
-          Create an account, explore the courses and test your knowledge with
-          interactive quizzes.
+          Създай акаунт, разгледай курсовете и провери знанията си чрез
+          интерактивни тестове.
         </p>
 
         <Link to="/courses" className="primary-button">
-          Start Learning →
+          Започни обучението →
         </Link>
       </section>
     </main>

@@ -23,30 +23,30 @@ export const CoursesProvider = ({
       return [
         {
           id: "1",
-          title: "React Fundamentals",
+          title: "Основи на React",
           description:
-            "Learn the core concepts of React, including JSX, components, props and state.",
-          level: "Beginner",
-          duration: "45 min",
+            "Научи основните концепции на React, включително JSX, компоненти, props и state.",
+          level: "Начинаещ",
+          duration: "45 мин",
           videoUrl: "https://www.youtube.com/embed/SqcY0GlETPk",
           documentationUrl: "https://react.dev/learn",
-          topics: ["JSX", "Components", "Props", "State"],
+          topics: ["JSX", "Компоненти", "Props", "State"],
           content:
-            "This module introduces the foundation of React. You will learn how React applications are structured, how components work and how data is passed through props and state.",
+            "Този модул представя основите на React. Ще научиш как са структурирани React приложенията, как работят компонентите и как се предават данни чрез props и state.",
           quizzes: [],
         },
         {
           id: "2",
           title: "React Hooks",
           description:
-            "Understand useState, useEffect and how hooks help manage logic in React applications.",
-          level: "Intermediate",
-          duration: "50 min",
+            "Разбери как работят useState, useEffect и как hooks улесняват логиката в React приложенията.",
+          level: "Средно ниво",
+          duration: "50 мин",
           videoUrl: "https://www.youtube.com/embed/TNhaISOUy6Q",
           documentationUrl: "https://react.dev/reference/react",
           topics: ["useState", "useEffect", "Custom Hooks"],
           content:
-            "This module explains how hooks allow functional components to manage state, side effects and reusable logic.",
+            "Този модул обяснява как hooks позволяват на функционалните компоненти да управляват state, side effects и преизползваема логика.",
           quizzes: [],
         },
       ];
@@ -63,8 +63,8 @@ export const CoursesProvider = ({
     const newCourse = {
       id: Date.now().toString(),
       ...course,
-      level: "Beginner",
-      duration: "30 min",
+      level: "Начинаещ",
+      duration: "30 мин",
       videoUrl: "",
       documentationUrl: "",
       topics: [],
@@ -104,7 +104,7 @@ export const CoursesProvider = ({
           ? {
               ...course,
               quizzes: [
-                ...(course.quizzes || []), 
+                ...(course.quizzes || []),
                 {
                   id: Date.now().toString(),
                   ...quiz,
@@ -130,3 +130,5 @@ export const CoursesProvider = ({
     </CoursesContext.Provider>
   );
 };
+
+export default CoursesProvider;

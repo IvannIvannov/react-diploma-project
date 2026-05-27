@@ -44,17 +44,17 @@ const Navbar = () => {
             <nav className="dropdown-menu">
               <Link to="/" onClick={closeMenu}>
                 <HiOutlineHome />
-                Home
+                Начало
               </Link>
 
               <Link to="/courses" onClick={closeMenu}>
                 <HiOutlineBookOpen />
-                Courses
+                Курсове
               </Link>
 
               <Link to="/dashboard" onClick={closeMenu}>
                 <HiOutlineSquares2X2 />
-                Dashboard
+                Табло
               </Link>
 
               <div className="dropdown-divider" />
@@ -73,19 +73,19 @@ const Navbar = () => {
                     }}
                   >
                     <HiOutlineArrowRightOnRectangle />
-                    Logout
+                    Изход
                   </button>
                 </>
               ) : (
                 <>
                   <Link to="/login" onClick={closeMenu}>
                     <HiOutlineUser />
-                    Login
+                    Вход
                   </Link>
 
                   <Link to="/register" onClick={closeMenu}>
                     <HiOutlineUser />
-                    Register
+                    Регистрация
                   </Link>
                 </>
               )}

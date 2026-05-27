@@ -8,8 +8,8 @@ const Footer = () => {
           <h2>ReactLearn</h2>
 
           <p>
-            A modern platform for learning React through structured lessons,
-            quizzes and self-paced practice.
+            Модерна платформа за самообучение по React чрез структурирани уроци,
+            тестове и практика със собствено темпо.
           </p>
         </div>
 
@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <span>© 2026 ReactLearn</span>
 
-          <span>Built for independent React learning</span>
+          <span>Създадено за самостоятелно обучение по React</span>
         </div>
       </div>
     </footer>
