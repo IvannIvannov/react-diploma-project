@@ -8,14 +8,17 @@ import "./Register.css";
 const Register = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const result = await registerUser({ name, email, password });
+    const result = await registerUser({
+      name: "User",
+      email,
+      password,
+    });
 
     if (result.message || result.user) {
       navigate("/login");
@@ -38,16 +41,6 @@ const Register = () => {
         </div>
 
         <form className="register-form" onSubmit={handleSubmit}>
-          <label>
-            Име
-            <input
-              type="text"
-              placeholder="Въведи име"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-
           <label>
             Имейл адрес
             <input
