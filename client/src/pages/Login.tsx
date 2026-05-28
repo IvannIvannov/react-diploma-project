@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth";
 import { loginUser } from "../services/authService";
+
 import "./Login.css";
 
 const Login = () => {
   const { login } = useAuth();
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -14,11 +17,16 @@ const Login = () => {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const result = await loginUser({ email, password });
+    const result = await loginUser({
+      email,
+      password,
+    });
 
     if (result.token && result.user) {
       localStorage.setItem("token", result.token);
+
       login(result.user.email, result.user.role);
+
       navigate("/dashboard");
     } else {
       alert(result.error || "Невалиден имейл или парола");
@@ -29,8 +37,10 @@ const Login = () => {
     <main className="auth-page">
       <section className="auth-card">
         <div className="auth-header">
-          <p>Влез в системата на ReactLearn</p>
+          <p>Добре дошъл/ла обратно</p>
+
           <h1>Вход в профила</h1>
+
           <span>
             Влез в платформата, за да продължиш обучението си по React.
           </span>
@@ -59,6 +69,10 @@ const Login = () => {
 
           <button type="submit">Вход</button>
         </form>
+
+        <p className="login-footer-text">
+          Нямате акаунт? <Link to="/register">Регистрирайте се</Link>
+        </p>
       </section>
     </main>
   );

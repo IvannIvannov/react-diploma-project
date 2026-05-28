@@ -119,6 +119,25 @@
   transform: translateY(-2px);
 }
 
+.login-footer-text {
+  margin: 24px 0 0;
+
+  color: #6b665f;
+
+  text-align: center;
+  font-size: 15px;
+}
+
+.login-footer-text a {
+  color: #111;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.login-footer-text a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .auth-card {
     padding: 30px;
