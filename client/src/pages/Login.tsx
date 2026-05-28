@@ -15,11 +15,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
+  const [shakeError, setShakeError] = useState(false);
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    setError("");
 
     const result = await loginUser({
       email,
@@ -27,6 +26,8 @@ const Login = () => {
     });
 
     if (result.token && result.user) {
+      setError("");
+
       localStorage.setItem("token", result.token);
 
       login(result.user.email, result.user.role);
@@ -36,6 +37,12 @@ const Login = () => {
       setError(
         result.error || "Невалиден имейл или парола. Моля, опитайте отново.",
       );
+
+      setShakeError(true);
+
+      setTimeout(() => {
+        setShakeError(false);
+      }, 400);
     }
   };
 
@@ -73,7 +80,11 @@ const Login = () => {
             />
           </label>
 
-          {error && <div className="auth-error">{error}</div>}
+          {error && (
+            <div className={`auth-error ${shakeError ? "shake" : ""}`}>
+              {error}
+            </div>
+          )}
 
           <button type="submit">Вход</button>
         </form>
