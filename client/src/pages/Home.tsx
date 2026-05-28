@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
+import { useCourses } from "../context/useCourses";
 import "./Home.css";
 
 const Home = () => {
+  const { courses } = useCourses();
+
+  const totalCourses = courses.length;
+
+  const totalQuizzes = courses.reduce(
+    (total, course) => total + (course.quizzes?.length || 0),
+    0,
+  );
+
+  const featuredCourse = courses[0];
+
   const feedbacks = [
     {
       id: 1,
@@ -33,8 +45,7 @@ const Home = () => {
 
           <p className="hero-description">
             Усвои React стъпка по стъпка чрез структурирани курсове,
-            интерактивни тестове и практически упражнения, създадени за
-            самостоятелно обучение.
+            интерактивни тестове и практически упражнения.
           </p>
 
           <div className="hero-actions">
@@ -50,34 +61,29 @@ const Home = () => {
 
         <div className="hero-card">
           <div className="hero-card-top">
-            <span className="hero-card-badge">Основи на React</span>
+            <span className="hero-card-badge">
+              {featuredCourse ? featuredCourse.title : "ReactLearn"}
+            </span>
 
-            <span className="hero-card-progress">72% завършено</span>
+            <span className="hero-card-progress">{totalCourses} курса</span>
           </div>
 
           <div className="lesson-preview">
-            <h3>Текущ модул</h3>
+            <h3>Препоръчан модул</h3>
 
             <p>
-              Компоненти, props, state управление и изграждане на преизползваеми
-              UI структури.
+              {featuredCourse
+                ? featuredCourse.description
+                : "Все още няма добавени курсове."}
             </p>
 
             <div className="lesson-list">
-              <div className="lesson-item">
-                <span>Компоненти</span>
-                <span>✓</span>
-              </div>
-
-              <div className="lesson-item">
-                <span>Props и State</span>
-                <span>✓</span>
-              </div>
-
-              <div className="lesson-item">
-                <span>Hooks</span>
-                <span>→</span>
-              </div>
+              {courses.slice(0, 3).map((course) => (
+                <div className="lesson-item" key={course.id}>
+                  <span>{course.title}</span>
+                  <span>→</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -85,12 +91,12 @@ const Home = () => {
 
       <section className="stats-section">
         <div className="stat-card">
-          <strong>12+</strong>
-          <span>React урока</span>
+          <strong>{totalCourses}</strong>
+          <span>React курса</span>
         </div>
 
         <div className="stat-card">
-          <strong>30+</strong>
+          <strong>{totalQuizzes}</strong>
           <span>Тестови въпроса</span>
         </div>
 
@@ -103,27 +109,22 @@ const Home = () => {
       <section className="features-section">
         <div className="section-heading">
           <p>Как работи</p>
-
           <h2>Всичко необходимо за самостоятелно обучение по React.</h2>
         </div>
 
         <div className="features-grid">
           <div className="feature-card">
             <span>01</span>
-
             <h3>Структурирани уроци</h3>
-
             <p>
               Следвай ясен учебен път от основите на React до по-сложни
-              концепции като hooks, routing и управление на state.
+              концепции.
             </p>
           </div>
 
           <div className="feature-card">
             <span>02</span>
-
             <h3>Практика с тестове</h3>
-
             <p>
               Провери знанията си след всеки курс и получи незабавна обратна
               връзка.
@@ -132,9 +133,7 @@ const Home = () => {
 
           <div className="feature-card">
             <span>03</span>
-
             <h3>Проследяване на прогреса</h3>
-
             <p>Учи със собствено темпо и следи развитието си в платформата.</p>
           </div>
         </div>
@@ -147,38 +146,24 @@ const Home = () => {
           <h2>От начинаещ до уверен React разработчик.</h2>
 
           <p>
-            Платформата е създадена да води обучаващите се през най-важните
-            React теми стъпка по стъпка.
+            Платформата води обучаващите се през най-важните React теми стъпка
+            по стъпка.
           </p>
         </div>
 
         <div className="path-list">
-          <div className="path-item">
-            <strong>01</strong>
-            <span>React Компоненти</span>
-          </div>
-
-          <div className="path-item">
-            <strong>02</strong>
-            <span>Props и State</span>
-          </div>
-
-          <div className="path-item">
-            <strong>03</strong>
-            <span>Hooks</span>
-          </div>
-
-          <div className="path-item">
-            <strong>04</strong>
-            <span>Routing и Автентикация</span>
-          </div>
+          {courses.slice(0, 4).map((course, index) => (
+            <div className="path-item" key={course.id}>
+              <strong>{String(index + 1).padStart(2, "0")}</strong>
+              <span>{course.title}</span>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="feedback-section">
         <div className="section-heading">
           <p>Отзиви</p>
-
           <h2>Какво казват потребителите за ReactLearn.</h2>
         </div>
 
