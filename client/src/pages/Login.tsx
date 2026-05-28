@@ -14,8 +14,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setError("");
 
     const result = await loginUser({
       email,
@@ -29,7 +33,9 @@ const Login = () => {
 
       navigate("/dashboard");
     } else {
-      alert(result.error || "Невалиден имейл или парола");
+      setError(
+        result.error || "Невалиден имейл или парола. Моля, опитайте отново.",
+      );
     }
   };
 
@@ -66,6 +72,8 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
+
+          {error && <div className="auth-error">{error}</div>}
 
           <button type="submit">Вход</button>
         </form>
