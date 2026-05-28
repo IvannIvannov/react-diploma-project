@@ -5,65 +5,69 @@ import "./Courses.css";
 const Courses = () => {
   const { courses, deleteCourse } = useCourses();
 
+  const totalQuizzes = courses.reduce(
+    (total, course) => total + (course.quizzes?.length || 0),
+    0,
+  );
+
   return (
     <main className="courses-page">
-      <section className="courses-layout">
-        <aside className="courses-sidebar">
-          <p className="courses-label">Библиотека с курсове</p>
+      <section className="courses-hero">
+        <p className="courses-label">Каталог с курсове</p>
 
-          <h1>Модули за обучение по React.</h1>
+        <div className="courses-hero-content">
+          <h1>Избери своя React модул.</h1>
 
-          <p className="courses-description">
-            Следвай структурирани курсове, решавай тестове и развивай знанията
-            си по React стъпка по стъпка.
+          <p>
+            Разгледай структурирани уроци, гледай видео материали, използвай
+            документация и провери знанията си чрез тестове.
           </p>
+        </div>
 
-          <div className="courses-summary">
-            <div>
-              <strong>{courses.length}</strong>
-              <span>Общо курсове</span>
-            </div>
-
-            <div>
-              <strong>
-                {courses.reduce(
-                  (total, course) => total + (course.quizzes?.length || 0),
-                  0,
-                )}
-              </strong>
-
-              <span>Общо тестове</span>
-            </div>
+        <div className="courses-stats">
+          <div>
+            <strong>{courses.length}</strong>
+            <span>курса</span>
           </div>
-        </aside>
 
-        <section className="courses-board">
-          {courses.length === 0 ? (
-            <div className="empty-courses">Все още няма налични курсове.</div>
-          ) : (
-            courses.map((course, index) => (
-              <article className="course-module" key={course.id}>
-                <div className="course-module-header">
-                  <span>Модул {String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <strong>{totalQuizzes}</strong>
+            <span>теста</span>
+          </div>
+        </div>
+      </section>
 
-                  <span>{course.quizzes?.length || 0} теста</span>
-                </div>
+      <section className="courses-list">
+        {courses.length === 0 ? (
+          <div className="empty-courses">Все още няма налични курсове.</div>
+        ) : (
+          courses.map((course, index) => (
+            <article className="course-card" key={course.id}>
+              <div className="course-index">
+                {String(index + 1).padStart(2, "0")}
+              </div>
 
-                <h3>{course.title}</h3>
-
+              <div className="course-content">
+                <span className="course-type">React модул</span>
+                <h2>{course.title}</h2>
                 <p>{course.description}</p>
+              </div>
 
-                <div className="course-module-footer">
-                  <Link to={`/courses/${course.id}`}>Отвори курса</Link>
+              <div className="course-info">
+                <span>{course.quizzes?.length || 0} теста</span>
+                <span>{course.duration}</span>
+              </div>
 
-                  <button onClick={() => deleteCourse(course.id)}>
-                    Изтрий
-                  </button>
-                </div>
-              </article>
-            ))
-          )}
-        </section>
+              <div className="course-actions">
+                <Link to={`/courses/${course.id}`}>Отвори</Link>
+
+                <button onClick={() => deleteCourse(course.id)}>
+                  Изтрий
+                </button>
+              </div>
+            </article>
+          ))
+        )}
       </section>
     </main>
   );
