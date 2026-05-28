@@ -1,5 +1,10 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { useCourses } from "../context/useCourses";
+
+import AnimatedCounter from "../components/AnimatedCounter";
+
 import "./Home.css";
 
 const Home = () => {
@@ -13,6 +18,29 @@ const Home = () => {
   );
 
   const featuredCourse = courses[0];
+
+  useEffect(() => {
+    const elements = document.querySelectorAll("[data-reveal]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
 
   const feedbacks = [
     {
@@ -37,7 +65,7 @@ const Home = () => {
 
   return (
     <main className="home-page">
-      <section className="hero-section">
+      <section className="hero-section reveal" data-reveal>
         <div>
           <p className="hero-label">Платформа за самообучение по React</p>
 
@@ -81,6 +109,7 @@ const Home = () => {
               {courses.slice(0, 3).map((course) => (
                 <div className="lesson-item" key={course.id}>
                   <span>{course.title}</span>
+
                   <span>→</span>
                 </div>
               ))}
@@ -89,33 +118,45 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="stats-section">
+      <section className="stats-section reveal" data-reveal>
         <div className="stat-card">
-          <strong>{totalCourses}</strong>
+          <strong>
+            <AnimatedCounter value={totalCourses} />
+          </strong>
+
           <span>React курса</span>
         </div>
 
         <div className="stat-card">
-          <strong>{totalQuizzes}</strong>
+          <strong>
+            <AnimatedCounter value={totalQuizzes} />
+          </strong>
+
           <span>Тестови въпроса</span>
         </div>
 
         <div className="stat-card">
-          <strong>100%</strong>
+          <strong>
+            <AnimatedCounter value={100} suffix="%" />
+          </strong>
+
           <span>Самостоятелно обучение</span>
         </div>
       </section>
 
-      <section className="features-section">
+      <section className="features-section reveal" data-reveal>
         <div className="section-heading">
           <p>Как работи</p>
+
           <h2>Всичко необходимо за самостоятелно обучение по React.</h2>
         </div>
 
         <div className="features-grid">
           <div className="feature-card">
             <span>01</span>
+
             <h3>Структурирани уроци</h3>
+
             <p>
               Следвай ясен учебен път от основите на React до по-сложни
               концепции.
@@ -124,7 +165,9 @@ const Home = () => {
 
           <div className="feature-card">
             <span>02</span>
+
             <h3>Практика с тестове</h3>
+
             <p>
               Провери знанията си след всеки курс и получи незабавна обратна
               връзка.
@@ -133,13 +176,15 @@ const Home = () => {
 
           <div className="feature-card">
             <span>03</span>
+
             <h3>Проследяване на прогреса</h3>
+
             <p>Учи със собствено темпо и следи развитието си в платформата.</p>
           </div>
         </div>
       </section>
 
-      <section className="learning-path-section">
+      <section className="learning-path-section reveal" data-reveal>
         <div>
           <p className="hero-label">Учебен път</p>
 
@@ -155,15 +200,17 @@ const Home = () => {
           {courses.slice(0, 4).map((course, index) => (
             <div className="path-item" key={course.id}>
               <strong>{String(index + 1).padStart(2, "0")}</strong>
+
               <span>{course.title}</span>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="feedback-section">
+      <section className="feedback-section reveal" data-reveal>
         <div className="section-heading">
           <p>Отзиви</p>
+
           <h2>Какво казват потребителите за ReactLearn.</h2>
         </div>
 
@@ -177,6 +224,7 @@ const Home = () => {
 
                 <div>
                   <strong>{feedback.name}</strong>
+
                   <span>{feedback.role}</span>
                 </div>
               </div>
@@ -185,7 +233,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="cta-section">
+      <section className="cta-section reveal" data-reveal>
         <h2>Готов/а ли си да започнеш с React?</h2>
 
         <p>
