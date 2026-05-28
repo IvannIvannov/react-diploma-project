@@ -61,6 +61,12 @@ const Home = () => {
       role: "Frontend ентусиаст",
       text: "Комбинацията от уроци, практика и тестове прави процеса на обучение много по-мотивиращ.",
     },
+    {
+      id: 4,
+      name: "Никола Стоянов",
+      role: "Самоук frontend developer",
+      text: "Харесва ми колко модерно и лесно за използване е всичко. Ученето с ReactLearn е много по-приятно и мотивиращо.",
+    },
   ];
 
   return (
@@ -214,22 +220,25 @@ const Home = () => {
           <h2>Какво казват потребителите за ReactLearn.</h2>
         </div>
 
-        <div className="feedback-grid">
-          {feedbacks.map((feedback) => (
-            <div className="feedback-card" key={feedback.id}>
-              <p className="feedback-text">“{feedback.text}”</p>
+        <div className="feedback-carousel">
+          <div className="feedback-track">
+            {[...feedbacks, ...feedbacks].map((feedback, index) => (
+              <div className="feedback-card" key={`${feedback.id}-${index}`}>
+                <p className="feedback-text">“{feedback.text}”</p>
 
-              <div className="feedback-author">
-                <div className="feedback-avatar">{feedback.name.charAt(0)}</div>
+                <div className="feedback-author">
+                  <div className="feedback-avatar">
+                    {feedback.name.charAt(0)}
+                  </div>
 
-                <div>
-                  <strong>{feedback.name}</strong>
-
-                  <span>{feedback.role}</span>
+                  <div>
+                    <strong>{feedback.name}</strong>
+                    <span>{feedback.role}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

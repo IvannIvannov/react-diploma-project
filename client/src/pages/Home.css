@@ -390,6 +390,53 @@
   font-size: 14px;
 }
 
+.feedback-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.feedback-track {
+  display: flex;
+  gap: 22px;
+  width: max-content;
+
+  animation: feedbackSlide 24s linear infinite;
+}
+
+.feedback-carousel:hover .feedback-track {
+  animation-play-state: paused;
+}
+
+.feedback-card {
+  width: 360px;
+  min-height: 260px;
+
+  padding: 32px;
+
+  background: #fff;
+  border: 1px solid #e5e0d8;
+  border-radius: 28px;
+
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feedback-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.07);
+}
+
+@keyframes feedbackSlide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .hero-section,
 .stats-section,
 .features-section,
