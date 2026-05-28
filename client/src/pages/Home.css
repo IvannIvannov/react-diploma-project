@@ -1,5 +1,5 @@
 .home-page {
-  min-height: calc(100vh - 83px);
+  min-height: 100vh;
   background: #fbfaf7;
 }
 
@@ -210,7 +210,7 @@
 
 .features-section,
 .learning-path-section,
-.cta-section {
+.feedback-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 80px 32px;
@@ -307,31 +307,36 @@
 }
 
 .cta-section {
-  margin-bottom: 80px;
+  max-width: 1200px;
+
+  margin: -20px auto 0;
+  padding: 64px 32px;
+
   text-align: center;
-  background: #111;
+
+  background: #fff;
+  border: 1px solid #e5e0d8;
   border-radius: 36px;
 }
 
 .cta-section h2 {
-  color: #fff;
+  color: #111;
 }
 
 .cta-section p {
   max-width: 620px;
   margin: 22px auto 32px;
-  color: #d1d5db;
+
+  color: #6b665f;
 }
 
 .cta-section .primary-button {
-  background: #fff;
-  color: #111;
+  background: #111;
+  color: #fff;
 }
 
-.feedback-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 32px;
+.cta-section .primary-button:hover {
+  background: #000;
 }
 
 .feedback-grid {
@@ -390,9 +395,7 @@
   .feedback-grid {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 900px) {
   .features-grid,
   .learning-path-section {
     grid-template-columns: 1fr;
@@ -403,9 +406,7 @@
   .cta-section h2 {
     font-size: 36px;
   }
-}
 
-@media (max-width: 900px) {
   .hero-section {
     grid-template-columns: 1fr;
     padding: 70px 24px;

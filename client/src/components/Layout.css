@@ -2,9 +2,4 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f7f5f1;
-}
-
-.app-main {
-  flex: 1;
 }
