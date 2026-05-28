@@ -309,34 +309,33 @@
 .cta-section {
   max-width: 1200px;
 
-  margin: -20px auto 0;
-  padding: 64px 32px;
+  margin: 16px auto 0;
+  padding: 80px 32px;
 
   text-align: center;
 
-  background: #fff;
-  border: 1px solid #e5e0d8;
+  background: #111;
   border-radius: 36px;
 }
 
 .cta-section h2 {
-  color: #111;
+  color: #fff;
 }
 
 .cta-section p {
   max-width: 620px;
   margin: 22px auto 32px;
 
-  color: #6b665f;
+  color: #d1d5db;
 }
 
 .cta-section .primary-button {
-  background: #111;
-  color: #fff;
+  background: #fff;
+  color: #111;
 }
 
 .cta-section .primary-button:hover {
-  background: #000;
+  background: #f3f4f6;
 }
 
 .feedback-grid {
