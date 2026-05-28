@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-
+import { useAuth } from "../hooks/useAuth";
 import { loginUser } from "../services/authService";
+import "./Login.css";
 
 const Login = () => {
   const { login } = useAuth();
@@ -18,41 +18,49 @@ const Login = () => {
 
     if (result.token && result.user) {
       localStorage.setItem("token", result.token);
-      login(result.user.email);
+      login(result.user.email, result.user.role);
       navigate("/dashboard");
     } else {
-      alert(result.error || "Invalid email or password");
+      alert(result.error || "Невалиден имейл или парола");
     }
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
+    <main className="auth-page">
+      <section className="auth-card">
+        <div className="auth-header">
+          <p>Влез в системата на ReactLearn</p>
+          <h1>Вход в профила</h1>
+          <span>
+            Влез в платформата, за да продължиш обучението си по React.
+          </span>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            className="w-full border rounded-lg px-4 py-3"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <label>
+            Имейл адрес
+            <input
+              type="email"
+              placeholder="example@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
 
-          <input
-            className="w-full border rounded-lg px-4 py-3"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label>
+            Парола
+            <input
+              type="password"
+              placeholder="Въведи парола"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
 
-          <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
-            Login
-          </button>
+          <button type="submit">Вход</button>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
