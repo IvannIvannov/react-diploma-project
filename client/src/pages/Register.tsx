@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { registerUser } from "../services/authService";
+
+import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,46 +20,62 @@ const Register = () => {
     if (result.message || result.user) {
       navigate("/login");
     } else {
-      alert(result.error || "Registration failed");
+      alert(result.error || "Регистрацията е неуспешна");
     }
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">Register</h1>
+    <main className="register-page">
+      <section className="register-card">
+        <div className="register-header">
+          <p>Създай своя профил</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            className="w-full border rounded-lg px-4 py-3"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <h1>Регистрация</h1>
 
-          <input
-            className="w-full border rounded-lg px-4 py-3"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <span>
+            Създай акаунт и започни самостоятелното си обучение по React.
+          </span>
+        </div>
 
-          <input
-            className="w-full border rounded-lg px-4 py-3"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <form className="register-form" onSubmit={handleSubmit}>
+          <label>
+            Име
+            <input
+              type="text"
+              placeholder="Въведи име"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
 
-          <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
-            Create account
-          </button>
+          <label>
+            Имейл адрес
+            <input
+              type="email"
+              placeholder="example@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Парола
+            <input
+              type="password"
+              placeholder="Въведи парола"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+
+          <button type="submit">Създай акаунт</button>
         </form>
-      </div>
-    </div>
+
+        <p className="register-footer-text">
+          Вече имаш акаунт? <Link to="/login">Влез оттук</Link>
+        </p>
+      </section>
+    </main>
   );
 };
 
