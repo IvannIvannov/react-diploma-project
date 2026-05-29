@@ -1,9 +1,13 @@
-import { useParams } from "react-router-dom";
-import { useCourses } from "../context/useCourses";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+
+import { useCourses } from "../context/useCourses";
+
+import "./Quiz.css";
 
 const Quiz = () => {
   const { id } = useParams();
+
   const { courses } = useCourses();
 
   const course = courses.find((c) => c.id === id);
@@ -12,9 +16,17 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  if (!course || course.quizzes.length === 0) return <h1>No quiz available</h1>;
+  if (!course) {
+    return <h1>Курсът не е намерен</h1>;
+  }
+
+  if (course.quizzes.length === 0) {
+    return <h1>Няма наличен тест за този курс</h1>;
+  }
 
   const quiz = course.quizzes[current];
+
+  const progress = Math.round(((current + 1) / course.quizzes.length) * 100);
 
   const handleAnswer = (index: number) => {
     if (index === quiz.correctAnswer) {
@@ -22,7 +34,7 @@ const Quiz = () => {
     }
 
     if (current + 1 < course.quizzes.length) {
-      setCurrent(current + 1);
+      setCurrent((prev) => prev + 1);
     } else {
       setFinished(true);
     }
@@ -32,30 +44,72 @@ const Quiz = () => {
     const percentage = Math.round((score / course.quizzes.length) * 100);
 
     return (
-      <div>
-        <h1>Quiz Finished 🎉</h1>
+      <main className="quiz-page">
+        <section className="quiz-result-card">
+          <p className="quiz-label">Тестът е завършен</p>
 
-        <h2>
-          Score: {score} / {course.quizzes.length}
-        </h2>
+          <h1>
+            {percentage >= 70 ? "Страхотна работа!" : "Продължавай да учиш!"}
+          </h1>
 
-        <h3>{percentage}%</h3>
+          <div className="quiz-score">
+            <strong>
+              {score} / {course.quizzes.length}
+            </strong>
 
-        {percentage >= 70 ? <p>Great job! 👏</p> : <p>Keep learning! 💪</p>}
-      </div>
+            <span>{percentage}%</span>
+          </div>
+
+          <p className="quiz-result-message">
+            {percentage >= 70
+              ? "Успешно премина теста и показа добро разбиране на материала."
+              : "Прегледай отново урока и опитай теста повторно."}
+          </p>
+
+          <div className="quiz-result-actions">
+            <button
+              onClick={() => {
+                setCurrent(0);
+                setScore(0);
+                setFinished(false);
+              }}
+            >
+              Опитай отново
+            </button>
+
+            <Link to={`/courses/${course.id}`}>Обратно към курса</Link>
+          </div>
+        </section>
+      </main>
     );
   }
 
   return (
-    <div>
-      <h2>{quiz.question}</h2>
+    <main className="quiz-page">
+      <section className="quiz-card">
+        <div className="quiz-top">
+          <p className="quiz-label">{course.title}</p>
 
-      {quiz.options.map((opt, i) => (
-        <button key={i} onClick={() => handleAnswer(i)}>
-          {opt}
-        </button>
-      ))}
-    </div>
+          <span>
+            Въпрос {current + 1} от {course.quizzes.length}
+          </span>
+        </div>
+
+        <div className="quiz-progress">
+          <div style={{ width: `${progress}%` }} />
+        </div>
+
+        <h1>{quiz.question}</h1>
+
+        <div className="quiz-options">
+          {quiz.options.map((option, index) => (
+            <button key={option} onClick={() => handleAnswer(index)}>
+              {option}
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 };
 

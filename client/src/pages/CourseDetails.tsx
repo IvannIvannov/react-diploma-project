@@ -70,8 +70,6 @@ const CourseDetails = () => {
 
             <div className="quiz-card-actions">
               <Link to={`/courses/${course.id}/quiz`}>Стартирай тест</Link>
-
-              <Link to={`/add-quiz/${course.id}`}>Добави тест</Link>
             </div>
           </div>
         </aside>
