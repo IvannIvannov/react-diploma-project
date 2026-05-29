@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { CoursesContext } from "./CoursesContext";
 import type { Course } from "./CoursesContext";
 
+import { defaultCourses } from "../data/defaultCourses";
+
 export const CoursesProvider = ({
   children,
 }: {
@@ -19,6 +21,8 @@ export const CoursesProvider = ({
           quizzes: course.quizzes || [],
         }));
       }
+
+      return defaultCourses;
 
       return [
         {
