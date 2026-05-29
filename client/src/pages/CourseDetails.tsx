@@ -69,7 +69,9 @@ const CourseDetails = () => {
             </p>
 
             <div className="quiz-card-actions">
-              <Link to={`/courses/${course.id}/quiz`}>Стартирай тест</Link>
+              <Link to={`/courses/${course.id}/quiz`} replace>
+                Стартирай тест
+              </Link>
             </div>
           </div>
         </aside>

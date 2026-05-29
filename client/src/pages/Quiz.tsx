@@ -1,5 +1,5 @@
-import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useCourses } from "../context/useCourses";
 
@@ -7,6 +7,7 @@ import "./Quiz.css";
 
 const Quiz = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { courses } = useCourses();
 
@@ -77,7 +78,15 @@ const Quiz = () => {
               Опитай отново
             </button>
 
-            <Link to={`/courses/${course.id}`}>Обратно към курса</Link>
+            <button
+              onClick={() =>
+                navigate(`/courses/${course.id}`, {
+                  replace: true,
+                })
+              }
+            >
+              Обратно към курса
+            </button>
           </div>
         </section>
       </main>
