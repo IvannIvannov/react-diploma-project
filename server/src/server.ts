@@ -3,10 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { connectDB } from "./config/db";
+
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import quizRoutes from "./routes/quizRoutes";
 import resultRoutes from "./routes/resultRoutes";
+import quizResultRoutes from "./routes/quizResultRoutes";
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/quizzes", quizRoutes);
 
 app.use("/api/results", resultRoutes);
+
+app.use("/api/quiz-results", quizResultRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API is running 🚀");
