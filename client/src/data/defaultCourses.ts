@@ -1,0 +1,689 @@
+import type { Course } from "../context/CoursesContext";
+
+export const defaultCourses: Course[] = [
+  {
+    id: "1",
+    title: "Основи на React",
+    description:
+      "Запознай се с React, компонентния подход и начина, по който се изграждат модерни потребителски интерфейси.",
+    level: "Начинаещ",
+    duration: "40 мин",
+    videoUrl: "https://www.youtube.com/embed/SqcY0GlETPk",
+    documentationUrl: "https://react.dev/learn",
+    topics: ["React", "Компоненти", "UI", "SPA"],
+    content:
+      "В този модул ще разбереш какво представлява React и защо е една от най-популярните библиотеки за изграждане на потребителски интерфейси.",
+    quizzes: [
+      {
+        id: "1-1",
+        question: "Какво представлява React?",
+        options: [
+          "База данни",
+          "JavaScript библиотека за UI",
+          "CSS framework",
+          "Backend framework",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "1-2",
+        question: "Кой създава React?",
+        options: ["Google", "Microsoft", "Meta", "Netflix"],
+        correctAnswer: 2,
+      },
+      {
+        id: "1-3",
+        question: "React се използва основно за?",
+        options: [
+          "Бази данни",
+          "UI интерфейси",
+          "Сървъри",
+          "Операционни системи",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "1-4",
+        question: "React приложенията са изградени от?",
+        options: ["Компоненти", "Таблици", "Сървъри", "Бази данни"],
+        correctAnswer: 0,
+      },
+      {
+        id: "1-5",
+        question: "React е?",
+        options: ["Framework", "Библиотека", "База данни", "Език"],
+        correctAnswer: 1,
+      },
+    ],
+  },
+
+  {
+    id: "2",
+    title: "JSX и компоненти",
+    description:
+      "Научи как работи JSX синтаксисът и как да създаваш React компоненти.",
+    level: "Начинаещ",
+    duration: "45 мин",
+    videoUrl: "https://www.youtube.com/embed/SqcY0GlETPk",
+    documentationUrl: "https://react.dev/learn/your-first-component",
+    topics: ["JSX", "Компоненти", "Props"],
+    content: "Този модул разглежда JSX и създаването на компоненти.",
+    quizzes: [
+      {
+        id: "2-1",
+        question: "Какво е JSX?",
+        options: [
+          "Разширение на JavaScript",
+          "База данни",
+          "CSS framework",
+          "Node пакет",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "2-2",
+        question: "Компонентът трябва да връща?",
+        options: ["JSX", "JSON", "CSS", "SQL"],
+        correctAnswer: 0,
+      },
+      {
+        id: "2-3",
+        question: "Името на React компонент започва с?",
+        options: ["Главна буква", "Малка буква", "Цифра", "Символ"],
+        correctAnswer: 0,
+      },
+      {
+        id: "2-4",
+        question: "JSX се преобразува в?",
+        options: ["React.createElement", "HTML", "CSS", "MongoDB"],
+        correctAnswer: 0,
+      },
+      {
+        id: "2-5",
+        question: "Компонентите са?",
+        options: ["Преизползваеми", "Еднократни", "Само CSS", "Само HTML"],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "3",
+    title: "Props и State",
+    description: "Разбери как компонентите обменят данни.",
+    level: "Начинаещ",
+    duration: "50 мин",
+    videoUrl: "https://www.youtube.com/embed/4UZrsTqkcW4",
+    documentationUrl: "https://react.dev/learn/state-a-components-memory",
+    topics: ["Props", "State"],
+    content: "Ще научиш разликите между props и state.",
+    quizzes: [
+      {
+        id: "3-1",
+        question: "Props се използват за?",
+        options: ["Предаване на данни", "CSS", "Маршрутизация", "Бази данни"],
+        correctAnswer: 0,
+      },
+      {
+        id: "3-2",
+        question: "State се управлява от?",
+        options: ["Компонента", "CSS", "Браузъра", "HTML"],
+        correctAnswer: 0,
+      },
+      {
+        id: "3-3",
+        question: "Props могат ли да се променят директно?",
+        options: ["Да", "Не", "Само с CSS", "Само с API"],
+        correctAnswer: 1,
+      },
+      {
+        id: "3-4",
+        question: "Кое съхранява локално състояние?",
+        options: ["State", "Props", "HTML", "Router"],
+        correctAnswer: 0,
+      },
+      {
+        id: "3-5",
+        question: "При промяна на state React?",
+        options: [
+          "Прерисува UI",
+          "Изтрива компонента",
+          "Рестартира приложението",
+          "Нищо",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "4",
+    title: "React Hooks",
+    description: "Научи как работят useState и useEffect.",
+    level: "Средно ниво",
+    duration: "55 мин",
+    videoUrl: "https://www.youtube.com/embed/TNhaISOUy6Q",
+    documentationUrl: "https://react.dev/reference/react",
+    topics: ["useState", "useEffect"],
+    content: "Hooks добавят state и логика във функционални компоненти.",
+    quizzes: [
+      {
+        id: "4-1",
+        question: "Кой hook управлява state?",
+        options: ["useState", "useEffect", "useRouter", "useNode"],
+        correctAnswer: 0,
+      },
+      {
+        id: "4-2",
+        question: "Кой hook управлява side effects?",
+        options: ["useEffect", "useState", "useCSS", "useDOM"],
+        correctAnswer: 0,
+      },
+      {
+        id: "4-3",
+        question: "Hooks могат да се използват в?",
+        options: ["Функционални компоненти", "HTML", "CSS", "JSON"],
+        correctAnswer: 0,
+      },
+      {
+        id: "4-4",
+        question: "useState връща?",
+        options: [
+          "Стойност и функция",
+          "Само стойност",
+          "Само функция",
+          "Обект",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "4-5",
+        question: "Custom hooks се използват за?",
+        options: ["Преизползваема логика", "Стилизация", "HTML", "Бази данни"],
+        correctAnswer: 0,
+      },
+    ],
+  },
+  {
+    id: "5",
+    title: "Работа с форми",
+    description:
+      "Научи как се създават, управляват и валидират форми в React приложения.",
+    level: "Средно ниво",
+    duration: "45 мин",
+    videoUrl: "https://www.youtube.com/embed/IkMND33x0qQ",
+    documentationUrl: "https://react.dev/reference/react-dom/components/input",
+    topics: ["Forms", "Inputs", "Validation"],
+    content:
+      "В този модул ще работиш с input полета, controlled components и обработка на submit събития.",
+    quizzes: [
+      {
+        id: "5-1",
+        question: "Какво е controlled input?",
+        options: [
+          "Input, чиято стойност се управлява от React state",
+          "Input без стойност",
+          "CSS input",
+          "HTML файл",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "5-2",
+        question: "Кое събитие се използва при изпращане на форма?",
+        options: ["onSubmit", "onClick", "onHover", "onLoad"],
+        correctAnswer: 0,
+      },
+      {
+        id: "5-3",
+        question: "Какво прави preventDefault()?",
+        options: [
+          "Спира стандартното поведение на формата",
+          "Изтрива state",
+          "Създава компонент",
+          "Стартира router",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "5-4",
+        question: "Къде най-често се пази стойността на input поле?",
+        options: ["В state", "В CSS", "В package.json", "В route"],
+        correctAnswer: 0,
+      },
+      {
+        id: "5-5",
+        question: "Защо е нужна валидация на формите?",
+        options: [
+          "За проверка на въведените данни",
+          "За промяна на цвета",
+          "За стартиране на server",
+          "За импорт на компоненти",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "6",
+    title: "React Router",
+    description:
+      "Изгради навигация между страници, динамични routes и детайлни страници в React приложение.",
+    level: "Средно ниво",
+    duration: "50 мин",
+    videoUrl: "https://www.youtube.com/embed/Ul3y1LXxzdU",
+    documentationUrl: "https://reactrouter.com/en/main",
+    topics: ["Routing", "Navigation", "Dynamic routes"],
+    content:
+      "Ще научиш как да използваш React Router за създаване на многостранично усещане в single-page приложения.",
+    quizzes: [
+      {
+        id: "6-1",
+        question: "За какво се използва React Router?",
+        options: [
+          "За навигация между страници",
+          "За стилизиране",
+          "За база данни",
+          "За криптиране",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "6-2",
+        question: "Кой компонент описва отделен route?",
+        options: ["Route", "Link", "Button", "Input"],
+        correctAnswer: 0,
+      },
+      {
+        id: "6-3",
+        question: "Кой компонент се използва за navigation link?",
+        options: ["Link", "Route", "Form", "State"],
+        correctAnswer: 0,
+      },
+      {
+        id: "6-4",
+        question: "Какво представлява dynamic route?",
+        options: [
+          "Route с променлив параметър",
+          "CSS клас",
+          "Файл с изображения",
+          "Static HTML",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "6-5",
+        question: "Кой hook може да чете route параметри?",
+        options: ["useParams", "useState", "useEffect", "useContext"],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "7",
+    title: "Context API",
+    description:
+      "Научи как да управляваш глобално състояние и да споделяш данни между различни компоненти.",
+    level: "Средно ниво",
+    duration: "50 мин",
+    videoUrl: "https://www.youtube.com/embed/5LrDIWkK_Bc",
+    documentationUrl:
+      "https://react.dev/learn/passing-data-deeply-with-context",
+    topics: ["Context", "Provider", "Global state"],
+    content:
+      "Този модул показва как Context API помага за избягване на prop drilling и за управление на общи данни.",
+    quizzes: [
+      {
+        id: "7-1",
+        question: "За какво се използва Context API?",
+        options: [
+          "За споделяне на данни между компоненти",
+          "За писане на CSS",
+          "За routing",
+          "За създаване на база данни",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "7-2",
+        question: "Какво е Provider?",
+        options: [
+          "Компонент, който подава стойност към context",
+          "CSS селектор",
+          "HTML tag",
+          "Router метод",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "7-3",
+        question: "Какво е prop drilling?",
+        options: [
+          "Предаване на props през много нива компоненти",
+          "Изтриване на props",
+          "Създаване на form",
+          "Използване на CSS",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "7-4",
+        question: "Кой hook чете context стойност?",
+        options: ["useContext", "useState", "useEffect", "useParams"],
+        correctAnswer: 0,
+      },
+      {
+        id: "7-5",
+        question: "Context API е полезен за?",
+        options: [
+          "Глобални данни като user или theme",
+          "Само изображения",
+          "Само CSS",
+          "Само backend",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "8",
+    title: "Работа с API",
+    description:
+      "Научи как React приложенията комуникират с backend чрез HTTP заявки.",
+    level: "Средно ниво",
+    duration: "55 мин",
+    videoUrl: "https://www.youtube.com/embed/cuEtnrL9-H0",
+    documentationUrl:
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+    topics: ["Fetch", "Axios", "HTTP"],
+    content:
+      "Ще разгледаш как се извличат, изпращат и обработват данни от външни услуги и backend API.",
+    quizzes: [
+      {
+        id: "8-1",
+        question: "За какво се използва API?",
+        options: [
+          "За комуникация между приложения",
+          "За CSS стилове",
+          "За HTML структура",
+          "За създаване на компоненти",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "8-2",
+        question: "Кой метод се използва често за HTTP заявки в JavaScript?",
+        options: ["fetch", "map", "filter", "reduce"],
+        correctAnswer: 0,
+      },
+      {
+        id: "8-3",
+        question: "Какво означава GET заявка?",
+        options: [
+          "Извличане на данни",
+          "Изтриване на данни",
+          "Създаване на CSS",
+          "Стартиране на React",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "8-4",
+        question: "Какво означава POST заявка?",
+        options: [
+          "Изпращане/създаване на данни",
+          "Изтриване на компонент",
+          "Промяна на route",
+          "Създаване на HTML",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "8-5",
+        question: "Защо се използва loading state при API заявки?",
+        options: [
+          "За да покажем, че данните се зареждат",
+          "За да сменим цвета на страницата",
+          "За да изтрием state",
+          "За да спрем routing",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+  {
+    id: "9",
+    title: "Автентикация",
+    description:
+      "Разбери как работят регистрация, вход, изход и потребителски сесии.",
+    level: "Средно ниво",
+    duration: "60 мин",
+    videoUrl: "https://www.youtube.com/embed/PKwu15ldZ7k",
+    documentationUrl: "https://jwt.io/introduction",
+    topics: ["Login", "Register", "JWT"],
+    content:
+      "Този модул обяснява основите на authentication flow и работа с токени.",
+    quizzes: [
+      {
+        id: "9-1",
+        question: "Какво е JWT?",
+        options: [
+          "Token за автентикация",
+          "CSS библиотека",
+          "База данни",
+          "React Hook",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "9-2",
+        question: "Къде обикновено се пази token?",
+        options: ["localStorage", "CSS файл", "HTML", "package.json"],
+        correctAnswer: 0,
+      },
+      {
+        id: "9-3",
+        question: "Какво прави login процесът?",
+        options: [
+          "Идентифицира потребителя",
+          "Създава CSS",
+          "Стартира React",
+          "Изтрива база данни",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "9-4",
+        question: "Logout премахва?",
+        options: ["Потребителската сесия", "CSS", "Компоненти", "Маршрути"],
+        correctAnswer: 0,
+      },
+      {
+        id: "9-5",
+        question: "Автентикацията служи за?",
+        options: [
+          "Проверка на самоличността",
+          "Стилизиране",
+          "Маршрутизация",
+          "Форми",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "10",
+    title: "Protected Routes",
+    description:
+      "Научи как да защитаваш страници според ролята на потребителя.",
+    level: "Напреднал",
+    duration: "45 мин",
+    videoUrl: "https://www.youtube.com/embed/X8eAbu1RWZ4",
+    documentationUrl: "https://reactrouter.com/en/main/start/overview",
+    topics: ["Authorization", "Roles"],
+    content:
+      "Този модул показва как се ограничават страници само за логнати потребители.",
+    quizzes: [
+      {
+        id: "10-1",
+        question: "Protected Route се използва за?",
+        options: [
+          "Ограничаване на достъпа",
+          "Стилизиране",
+          "API заявки",
+          "Форми",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "10-2",
+        question: "Кой потребител има достъп до admin панел?",
+        options: ["Admin", "Guest", "Всички", "Никой"],
+        correctAnswer: 0,
+      },
+      {
+        id: "10-3",
+        question: "Какво се проверява най-често?",
+        options: ["Token", "CSS", "HTML", "MongoDB"],
+        correctAnswer: 0,
+      },
+      {
+        id: "10-4",
+        question: "Protected Routes подобряват?",
+        options: ["Сигурността", "Цветовете", "Шрифтовете", "Снимките"],
+        correctAnswer: 0,
+      },
+      {
+        id: "10-5",
+        question: "Authorization означава?",
+        options: ["Разрешение за достъп", "Регистрация", "Изход", "Валидация"],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "11",
+    title: "Loading и Error States",
+    description:
+      "Подобри потребителското изживяване чрез loading индикатори и обработка на грешки.",
+    level: "Средно ниво",
+    duration: "35 мин",
+    videoUrl: "https://www.youtube.com/embed/4UZrsTqkcW4",
+    documentationUrl: "https://react.dev/learn/conditional-rendering",
+    topics: ["Loading", "Errors"],
+    content:
+      "Ще научиш как да показваш loading състояния и съобщения за грешки.",
+    quizzes: [
+      {
+        id: "11-1",
+        question: "Loading state показва?",
+        options: ["Че данните се зареждат", "Грешка", "Изход", "Форма"],
+        correctAnswer: 0,
+      },
+      {
+        id: "11-2",
+        question: "Error state се показва при?",
+        options: [
+          "Възникнала грешка",
+          "Успешен login",
+          "CSS проблем",
+          "Смяна на страница",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "11-3",
+        question: "Loading spinner подобрява?",
+        options: ["UX", "Backend", "Database", "JWT"],
+        correctAnswer: 0,
+      },
+      {
+        id: "11-4",
+        question: "Conditional rendering се използва за?",
+        options: [
+          "Показване на различно съдържание",
+          "Създаване на база данни",
+          "Routing",
+          "JWT",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "11-5",
+        question: "Добрата обработка на грешки прави приложението?",
+        options: [
+          "По-професионално",
+          "По-бавно",
+          "По-малко сигурно",
+          "По-малко удобно",
+        ],
+        correctAnswer: 0,
+      },
+    ],
+  },
+
+  {
+    id: "12",
+    title: "Финален React проект",
+    description:
+      "Приложи наученото чрез изграждане на цялостно React приложение.",
+    level: "Напреднал",
+    duration: "90 мин",
+    videoUrl: "https://www.youtube.com/embed/bMknfKXIFA8",
+    documentationUrl: "https://react.dev/",
+    topics: ["Project", "Practice"],
+    content: "В последния модул ще комбинираш всички знания в реален проект.",
+    quizzes: [
+      {
+        id: "12-1",
+        question: "Финалният проект има за цел?",
+        options: [
+          "Да приложиш наученото",
+          "Да създадеш CSS",
+          "Да изтриеш данни",
+          "Да инсталираш React",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "12-2",
+        question: "Добрата архитектура прави проекта?",
+        options: ["По-поддържаем", "По-бавен", "По-труден", "По-малък"],
+        correctAnswer: 0,
+      },
+      {
+        id: "12-3",
+        question: "Кои знания се комбинират тук?",
+        options: [
+          "Всички предишни модули",
+          "Само JSX",
+          "Само CSS",
+          "Само Router",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "12-4",
+        question: "Практиката помага за?",
+        options: [
+          "По-добро усвояване",
+          "По-малко знания",
+          "По-малко код",
+          "По-малко UI",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        id: "12-5",
+        question: "Финалният проект е?",
+        options: ["Практическо приложение", "CSS файл", "JWT token", "Route"],
+        correctAnswer: 0,
+      },
+    ],
+  },
+];
