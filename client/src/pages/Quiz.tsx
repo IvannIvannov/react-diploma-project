@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useCourses } from "../context/useCourses";
+import { useAuth } from "../hooks/useAuth";
+
+import { saveQuizResult } from "../services/quizResultService";
 
 import "./Quiz.css";
 
@@ -10,12 +13,14 @@ const Quiz = () => {
   const navigate = useNavigate();
 
   const { courses } = useCourses();
+  const { user } = useAuth();
 
   const course = courses.find((c) => c.id === id);
 
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   if (!course) {
     return <h1>Курсът не е намерен</h1>;
@@ -29,15 +34,32 @@ const Quiz = () => {
 
   const progress = Math.round(((current + 1) / course.quizzes.length) * 100);
 
-  const handleAnswer = (index: number) => {
-    if (index === quiz.correctAnswer) {
-      setScore((prev) => prev + 1);
-    }
+  const handleAnswer = async (index: number) => {
+    const isCorrect = index === quiz.correctAnswer;
+
+    const updatedScore = isCorrect ? score + 1 : score;
 
     if (current + 1 < course.quizzes.length) {
+      setScore(updatedScore);
       setCurrent((prev) => prev + 1);
-    } else {
-      setFinished(true);
+      return;
+    }
+
+    const percentage = Math.round((updatedScore / course.quizzes.length) * 100);
+
+    setScore(updatedScore);
+    setFinished(true);
+
+    if (user && !isSaved) {
+      await saveQuizResult({
+        userId: user.id,
+        courseId: course.id,
+        score: updatedScore,
+        totalQuestions: course.quizzes.length,
+        percentage,
+      });
+
+      setIsSaved(true);
     }
   };
 
@@ -73,18 +95,13 @@ const Quiz = () => {
                 setCurrent(0);
                 setScore(0);
                 setFinished(false);
+                setIsSaved(false);
               }}
             >
               Опитай отново
             </button>
 
-            <button
-              onClick={() =>
-                navigate(`/courses/${course.id}`, {
-                  replace: true,
-                })
-              }
-            >
+            <button onClick={() => navigate(`/courses/${course.id}`)}>
               Обратно към курса
             </button>
           </div>
