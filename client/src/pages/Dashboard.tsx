@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useAuth } from "../hooks/useAuth";
+import ResultsChart from "../components/ResultsChart";
 import { useCourses } from "../context/useCourses";
-
+import { useAuth } from "../hooks/useAuth";
 import { getQuizResults } from "../services/quizResultService";
 
 import "./Dashboard.css";
@@ -45,9 +46,7 @@ const Dashboard = () => {
   }
 
   const completedTests = results.length;
-
   const completedCourseIds = results.map((result) => result.courseId);
-
   const uniqueCompletedCourseIds = [...new Set(completedCourseIds)];
 
   const completedCourses = courses.filter((course) =>
@@ -78,44 +77,73 @@ const Dashboard = () => {
 
   return (
     <main className="dashboard-page">
-      <section className="dashboard-header">
-        <h1>Моят прогрес</h1>
+      <section className="dashboard-welcome">
+        <div>
+          <p>Dashboard</p>
 
-        <p>Следи развитието си и резултатите от всички преминати тестове.</p>
+          <h1>Здравей, {user?.email}!</h1>
+
+          <span>
+            Проследи своя напредък, резултатите от тестовете и завършените React
+            модули.
+          </span>
+
+          <Link to="/courses">Продължи обучението</Link>
+        </div>
+
+        <div className="welcome-visual">
+          <strong>{courseProgress}%</strong>
+          <span>общ прогрес</span>
+        </div>
       </section>
 
-      <section className="stats-grid">
-        <div className="stat-card">
-          <h2>{completedTests}</h2>
+      <section className="dashboard-stats">
+        <div className="dashboard-stat-card">
           <span>Завършени тестове</span>
+          <strong>{completedTests}</strong>
         </div>
 
-        <div className="stat-card">
-          <h2>{averageScore}%</h2>
+        <div className="dashboard-stat-card">
           <span>Среден резултат</span>
+          <strong>{averageScore}%</strong>
         </div>
 
-        <div className="stat-card">
-          <h2>{bestScore}%</h2>
+        <div className="dashboard-stat-card">
           <span>Най-добър резултат</span>
+          <strong>{bestScore}%</strong>
+        </div>
+
+        <div className="dashboard-stat-card">
+          <span>Завършени модули</span>
+          <strong>
+            {completedCourses.length}/{courses.length}
+          </strong>
         </div>
       </section>
 
-      {latestResult && (
-        <section className="latest-result-card">
-          <div>
-            <h2>Последен тест</h2>
+      <section className="dashboard-grid">
+        <div className="dashboard-chart-box">
+          {results.length > 0 ? (
+            <ResultsChart results={results} />
+          ) : (
+            <div className="empty-dashboard-card">
+              Все още няма решени тестове.
+            </div>
+          )}
+        </div>
 
-            <p>
+        {latestResult && (
+          <div className="latest-result-card">
+            <p>Последен тест</p>
+            <h2>
               {latestCourse
                 ? latestCourse.title
                 : `Модул #${latestResult.courseId}`}
-            </p>
+            </h2>
+            <strong>{latestResult.percentage}%</strong>
           </div>
-
-          <strong>{latestResult.percentage}%</strong>
-        </section>
-      )}
+        )}
+      </section>
 
       <section className="course-progress-section">
         <div className="course-progress-header">
