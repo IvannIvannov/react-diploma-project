@@ -17,3 +17,11 @@ export const saveQuizResult = async (data: {
 
   return response.json();
 };
+
+export const getQuizResults = async (userId: string) => {
+  const response = await fetch(
+    `http://localhost:5000/api/quiz-results/${userId}`,
+  );
+
+  return response.json();
+};
