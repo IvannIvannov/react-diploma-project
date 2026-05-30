@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAuth } from "../hooks/useAuth";
+import { useCourses } from "../context/useCourses";
 
 import { getQuizResults } from "../services/quizResultService";
 
@@ -17,6 +18,7 @@ type QuizResult = {
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const { courses } = useCourses();
 
   const [results, setResults] = useState<QuizResult[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,6 @@ const Dashboard = () => {
 
       try {
         const data = await getQuizResults(user.id);
-
         setResults(data);
       } catch (error) {
         console.error(error);
@@ -45,6 +46,19 @@ const Dashboard = () => {
 
   const completedTests = results.length;
 
+  const completedCourseIds = results.map((result) => result.courseId);
+
+  const uniqueCompletedCourseIds = [...new Set(completedCourseIds)];
+
+  const completedCourses = courses.filter((course) =>
+    uniqueCompletedCourseIds.includes(course.id),
+  );
+
+  const courseProgress =
+    courses.length > 0
+      ? Math.round((completedCourses.length / courses.length) * 100)
+      : 0;
+
   const averageScore =
     results.length > 0
       ? Math.round(
@@ -57,6 +71,10 @@ const Dashboard = () => {
     results.length > 0 ? Math.max(...results.map((r) => r.percentage)) : 0;
 
   const latestResult = results[0];
+
+  const latestCourse = courses.find(
+    (course) => course.id === latestResult?.courseId,
+  );
 
   return (
     <main className="dashboard-page">
@@ -85,13 +103,56 @@ const Dashboard = () => {
 
       {latestResult && (
         <section className="latest-result-card">
-          <h2>Последен тест</h2>
+          <div>
+            <h2>Последен тест</h2>
 
-          <p>Модул #{latestResult.courseId}</p>
+            <p>
+              {latestCourse
+                ? latestCourse.title
+                : `Модул #${latestResult.courseId}`}
+            </p>
+          </div>
 
           <strong>{latestResult.percentage}%</strong>
         </section>
       )}
+
+      <section className="course-progress-section">
+        <div className="course-progress-header">
+          <div>
+            <p>Учебен прогрес</p>
+            <h2>Прогрес по модули</h2>
+          </div>
+
+          <strong>{courseProgress}%</strong>
+        </div>
+
+        <div className="dashboard-progress-bar">
+          <div style={{ width: `${courseProgress}%` }} />
+        </div>
+
+        <div className="course-progress-list">
+          {courses.map((course) => {
+            const isCompleted = uniqueCompletedCourseIds.includes(course.id);
+
+            return (
+              <div
+                className={`course-progress-item ${
+                  isCompleted ? "completed" : ""
+                }`}
+                key={course.id}
+              >
+                <span>{isCompleted ? "✓" : "→"}</span>
+
+                <div>
+                  <strong>{course.title}</strong>
+                  <p>{isCompleted ? "Завършен модул" : "Не е започнат"}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </main>
   );
 };

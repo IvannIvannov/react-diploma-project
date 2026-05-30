@@ -1,14 +1,53 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import { useAuth } from "../hooks/useAuth";
 import { useCourses } from "../context/useCourses";
+import { getQuizResults } from "../services/quizResultService";
+
 import "./Courses.css";
+
+type QuizResult = {
+  _id: string;
+  courseId: string;
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  createdAt: string;
+};
 
 const Courses = () => {
   const { courses, deleteCourse } = useCourses();
+  const { user } = useAuth();
+
+  const [results, setResults] = useState<QuizResult[]>([]);
+
+  useEffect(() => {
+    const loadResults = async () => {
+      if (!user) return;
+
+      const data = await getQuizResults(user.id);
+      setResults(data);
+    };
+
+    loadResults();
+  }, [user]);
 
   const totalQuizzes = courses.reduce(
     (total, course) => total + (course.quizzes?.length || 0),
     0,
   );
+
+  const completedCourseIds = results.map((result) => result.courseId);
+
+  const completedCourses = courses.filter((course) =>
+    completedCourseIds.includes(course.id),
+  ).length;
+
+  const progress =
+    courses.length > 0
+      ? Math.round((completedCourses / courses.length) * 100)
+      : 0;
 
   return (
     <main className="courses-page">
@@ -34,6 +73,11 @@ const Courses = () => {
             <strong>{totalQuizzes}</strong>
             <span>теста</span>
           </div>
+
+          <div>
+            <strong>{progress}%</strong>
+            <span>прогрес</span>
+          </div>
         </div>
       </section>
 
@@ -41,32 +85,42 @@ const Courses = () => {
         {courses.length === 0 ? (
           <div className="empty-courses">Все още няма налични курсове.</div>
         ) : (
-          courses.map((course, index) => (
-            <article className="course-card" key={course.id}>
-              <div className="course-index">
-                {String(index + 1).padStart(2, "0")}
-              </div>
+          courses.map((course, index) => {
+            const isCompleted = completedCourseIds.includes(course.id);
 
-              <div className="course-content">
-                <span className="course-type">React модул</span>
-                <h2>{course.title}</h2>
-                <p>{course.description}</p>
-              </div>
+            return (
+              <article
+                className={`course-card ${isCompleted ? "completed" : ""}`}
+                key={course.id}
+              >
+                <div className="course-index">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
 
-              <div className="course-info">
-                <span>{course.quizzes?.length || 0} теста</span>
-                <span>{course.duration}</span>
-              </div>
+                <div className="course-content">
+                  <span className="course-type">
+                    {isCompleted ? "Завършен модул" : "React модул"}
+                  </span>
 
-              <div className="course-actions">
-                <Link to={`/courses/${course.id}`}>Отвори</Link>
+                  <h2>{course.title}</h2>
+                  <p>{course.description}</p>
+                </div>
 
-                <button onClick={() => deleteCourse(course.id)}>
-                  Изтрий
-                </button>
-              </div>
-            </article>
-          ))
+                <div className="course-info">
+                  <span>{course.quizzes?.length || 0} теста</span>
+                  <span>{course.duration}</span>
+                </div>
+
+                <div className="course-actions">
+                  <Link to={`/courses/${course.id}`}>Отвори</Link>
+
+                  <button onClick={() => deleteCourse(course.id)}>
+                    Изтрий
+                  </button>
+                </div>
+              </article>
+            );
+          })
         )}
       </section>
     </main>
