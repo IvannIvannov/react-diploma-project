@@ -30,7 +30,12 @@ const Login = () => {
 
       localStorage.setItem("token", result.token);
 
-      login(result.user.id, result.user.email, result.user.role);
+      login(
+        result.user.id,
+        result.user.name,
+        result.user.email,
+        result.user.role,
+      );
 
       navigate("/dashboard");
     } else {

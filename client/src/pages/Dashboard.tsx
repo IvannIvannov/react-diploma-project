@@ -81,7 +81,7 @@ const Dashboard = () => {
         <div>
           <p>Dashboard</p>
 
-          <h1>Здравей, {user?.email}!</h1>
+          <h1>Здравей, {user?.name}!</h1>
 
           <span>
             Проследи своя напредък, резултатите от тестовете и завършените React

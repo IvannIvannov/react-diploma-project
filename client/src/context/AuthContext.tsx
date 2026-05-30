@@ -2,13 +2,19 @@ import { createContext, useState } from "react";
 
 type User = {
   id: string;
+  name: string;
   email: string;
   role: "user" | "admin";
 };
 
 type AuthContextType = {
   user: User | null;
-  login: (id: string, email: string, role: "user" | "admin") => void;
+  login: (
+    id: string,
+    name: string,
+    email: string,
+    role: "user" | "admin",
+  ) => void;
   logout: () => void;
 };
 
@@ -21,9 +27,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  const login = (id: string, email: string, role: "user" | "admin") => {
+  const login = (
+    id: string,
+    name: string,
+    email: string,
+    role: "user" | "admin",
+  ) => {
     const userData: User = {
       id,
+      name,
       email,
       role,
     };
