@@ -1,14 +1,64 @@
+import { useEffect, useState } from "react";
+
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
+import { useCourses } from "../context/useCourses";
 import { useAuth } from "../hooks/useAuth";
+import { getQuizResults } from "../services/quizResultService";
 
 import "./Certificate.css";
 
+type QuizResult = {
+  courseId: string;
+  percentage: number;
+};
+
 const Certificate = () => {
   const { user } = useAuth();
+  const { courses } = useCourses();
+
+  const [results, setResults] = useState<QuizResult[]>([]);
 
   const today = new Date().toLocaleDateString("bg-BG");
+
+  useEffect(() => {
+    const loadResults = async () => {
+      if (!user) return;
+
+      const data = await getQuizResults(user.id);
+      setResults(data);
+    };
+
+    loadResults();
+  }, [user]);
+
+  const certificateResults = courses
+    .filter((course) => results.some((result) => result.courseId === course.id))
+    .map((course) => {
+      const courseResults = results.filter(
+        (result) => result.courseId === course.id,
+      );
+
+      const bestResult = Math.max(
+        ...courseResults.map((result) => result.percentage),
+      );
+
+      return {
+        title: course.title,
+        percentage: bestResult,
+      };
+    });
+
+  const averageScore =
+    certificateResults.length > 0
+      ? Math.round(
+          certificateResults.reduce(
+            (sum, result) => sum + result.percentage,
+            0,
+          ) / certificateResults.length,
+        )
+      : 0;
 
   const downloadCertificate = async () => {
     const certificate = document.getElementById("certificate");
@@ -46,6 +96,19 @@ const Certificate = () => {
         <p className="certificate-text">
           за успешно завършване на всички React модули и тестове в платформата.
         </p>
+
+        <div className="certificate-results">
+          {certificateResults.map((result) => (
+            <div className="certificate-result-row" key={result.title}>
+              <span>{result.title}</span>
+              <strong>{result.percentage}%</strong>
+            </div>
+          ))}
+        </div>
+
+        <div className="certificate-average">
+          Среден резултат: <strong>{averageScore}%</strong>
+        </div>
 
         <div className="certificate-footer">
           <div>

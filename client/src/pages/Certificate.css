@@ -170,3 +170,69 @@
 .download-certificate-button:hover {
     transform: translateY(-2px);
 }
+
+.certificate-results {
+    max-width: 520px;
+
+    margin: 50px auto 30px;
+    padding-top: 30px;
+
+    border-top: 1px solid #d8d2c8;
+}
+
+.certificate-result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+}
+
+.certificate-result-row span {
+    color: #444;
+    font-weight: 600;
+}
+
+.certificate-result-row strong {
+    color: #111;
+    font-weight: 900;
+}
+
+.certificate-average {
+    margin-top: 24px;
+
+    color: #111;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.certificate-results {
+    max-width: 520px;
+    margin: 24px auto 18px;
+    padding-top: 20px;
+    border-top: 1px solid #d8d2c8;
+}
+
+.certificate-result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 7px 0;
+}
+
+.certificate-result-row span,
+.certificate-result-row strong {
+    font-size: 13px;
+}
+
+.certificate-average {
+
+    margin: 60px 0 20px;
+
+    color: #111;
+
+    font-size: 20px;
+    font-weight: 700;
+}
