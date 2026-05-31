@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useCourses } from "../context/useCourses";
 import { useAuth } from "../hooks/useAuth";
 
-import { saveQuizResult } from "../services/quizResultService";
+import { getQuizResults, saveQuizResult } from "../services/quizResultService";
 
 import "./Quiz.css";
+
+type Achievement = {
+  icon: string;
+  title: string;
+};
+
+type QuizResult = {
+  courseId: string;
+  percentage: number;
+};
 
 const Quiz = () => {
   const { id } = useParams();
@@ -21,10 +31,37 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [achievement, setAchievement] = useState<{
-    icon: string;
-    title: string;
-  } | null>(null);
+
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [activeAchievement, setActiveAchievement] = useState(0);
+
+  useEffect(() => {
+    if (achievements.length === 0) return;
+
+    const rotateTimer = setInterval(() => {
+      setActiveAchievement((prev) => {
+        if (prev + 1 >= achievements.length) {
+          clearInterval(rotateTimer);
+          return prev;
+        }
+
+        return prev + 1;
+      });
+    }, 2200);
+
+    const hideTimer = setTimeout(
+      () => {
+        setAchievements([]);
+        setActiveAchievement(0);
+      },
+      achievements.length * 2200 + 1200,
+    );
+
+    return () => {
+      clearInterval(rotateTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [achievements]);
 
   if (!course) {
     return <h1>Курсът не е намерен</h1>;
@@ -40,7 +77,6 @@ const Quiz = () => {
 
   const handleAnswer = async (index: number) => {
     const isCorrect = index === quiz.correctAnswer;
-
     const updatedScore = isCorrect ? score + 1 : score;
 
     if (current + 1 < course.quizzes.length) {
@@ -55,6 +91,8 @@ const Quiz = () => {
     setFinished(true);
 
     if (user && !isSaved) {
+      const previousResults: QuizResult[] = await getQuizResults(user.id);
+
       await saveQuizResult({
         userId: user.id,
         courseId: course.id,
@@ -65,32 +103,84 @@ const Quiz = () => {
 
       setIsSaved(true);
 
-      if (percentage === 100) {
-        setAchievement({
-          icon: "💯",
-          title: "Отключи постижение: Отличен резултат",
-        });
-      } else {
-        setAchievement({
+      const previousCompletedIds = [
+        ...new Set(previousResults.map((result) => result.courseId)),
+      ];
+
+      const newCompletedIds = [
+        ...new Set([...previousCompletedIds, course.id]),
+      ];
+
+      const previousProgress =
+        courses.length > 0
+          ? Math.round((previousCompletedIds.length / courses.length) * 100)
+          : 0;
+
+      const newProgress =
+        courses.length > 0
+          ? Math.round((newCompletedIds.length / courses.length) * 100)
+          : 0;
+
+      const unlockedAchievements: Achievement[] = [];
+
+      if (previousResults.length === 0) {
+        unlockedAchievements.push({
           icon: "🏁",
           title: "Отключи постижение: Първи тест",
         });
       }
+
+      const hadPerfectScore = previousResults.some(
+        (result) => result.percentage === 100,
+      );
+
+      if (!hadPerfectScore && percentage === 100) {
+        unlockedAchievements.push({
+          icon: "💯",
+          title: "Отключи постижение: Отличен резултат",
+        });
+      }
+
+      if (previousResults.length < 5 && previousResults.length + 1 >= 5) {
+        unlockedAchievements.push({
+          icon: "📚",
+          title: "Отключи постижение: Активен обучаем",
+        });
+      }
+
+      if (previousProgress < 50 && newProgress >= 50) {
+        unlockedAchievements.push({
+          icon: "🚀",
+          title: "Отключи постижение: Напреднал",
+        });
+      }
+
+      if (previousProgress < 100 && newProgress === 100) {
+        unlockedAchievements.push({
+          icon: "🎓",
+          title: "Отключи постижение: React Master",
+        });
+      }
+
+      setActiveAchievement(0);
+      setAchievements(unlockedAchievements);
     }
   };
 
   if (finished) {
     const percentage = Math.round((score / course.quizzes.length) * 100);
 
+    const currentAchievement = achievements[activeAchievement];
+
     return (
       <main className="quiz-page">
-        {achievement && (
-          <div className="achievement-toast">
-            <span>{achievement.icon}</span>
+        {currentAchievement && (
+          <div className="achievement-toast" key={currentAchievement.title}>
+            <span>{currentAchievement.icon}</span>
 
             <div>
               <strong>Ново постижение!</strong>
-              <p>{achievement.title}</p>
+              <p>{currentAchievement.title}</p>
             </div>
           </div>
         )}
@@ -123,7 +213,8 @@ const Quiz = () => {
                 setScore(0);
                 setFinished(false);
                 setIsSaved(false);
-                setAchievement(null);
+                setAchievements([]);
+                setActiveAchievement(0);
               }}
             >
               Опитай отново
