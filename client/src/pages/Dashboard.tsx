@@ -75,6 +75,34 @@ const Dashboard = () => {
     (course) => course.id === latestResult?.courseId,
   );
 
+  const badges = [
+    {
+      title: "Първи тест",
+      icon: "🏁",
+      unlocked: completedTests >= 1,
+    },
+    {
+      title: "Отличен резултат",
+      icon: "💯",
+      unlocked: bestScore === 100,
+    },
+    {
+      title: "Активен обучаем",
+      icon: "📚",
+      unlocked: completedTests >= 5,
+    },
+    {
+      title: "Напреднал",
+      icon: "🚀",
+      unlocked: courseProgress >= 50,
+    },
+    {
+      title: "React Master",
+      icon: "🎓",
+      unlocked: courseProgress === 100,
+    },
+  ];
+
   return (
     <main className="dashboard-page">
       <section className="dashboard-welcome">
@@ -118,6 +146,28 @@ const Dashboard = () => {
           <strong>
             {completedCourses.length}/{courses.length}
           </strong>
+        </div>
+      </section>
+
+      <section className="badges-section">
+        <div className="badges-header">
+          <h2>Постижения</h2>
+          <p>Отключвай значки, докато напредваш.</p>
+        </div>
+
+        <div className="badges-grid">
+          {badges.map((badge) => (
+            <div
+              key={badge.title}
+              className={`badge-card ${badge.unlocked ? "unlocked" : "locked"}`}
+            >
+              <span>{badge.icon}</span>
+
+              <strong>{badge.title}</strong>
+
+              <small>{badge.unlocked ? "Отключена" : "Заключена"}</small>
+            </div>
+          ))}
         </div>
       </section>
 

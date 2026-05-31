@@ -309,6 +309,75 @@
     font-size: 14px;
 }
 
+.badges-section {
+    margin-bottom: 24px;
+}
+
+.badges-header {
+    margin-bottom: 18px;
+}
+
+.badges-header h2 {
+    margin: 0 0 6px;
+    color: #111;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.badges-header p {
+    margin: 0;
+    color: #6b665f;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.badge-card {
+    padding: 24px;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    transition: 0.25s ease;
+}
+
+.badge-card.unlocked {
+    background: white;
+    border: 1px solid #e5e0d8;
+}
+
+.badge-card.locked {
+    background: #f3f1ec;
+    border: 1px solid #e5e0d8;
+    opacity: 0.55;
+}
+
+.badge-card span {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 36px;
+}
+
+.badge-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #111;
+}
+
+.badge-card small {
+    color: #6b665f;
+}
+
+@media (max-width: 1100px) {
+    .badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 800px) {
     .course-progress-list {
         grid-template-columns: 1fr;
