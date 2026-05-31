@@ -181,3 +181,60 @@
 .quiz-result-actions a:hover {
     transform: translateY(-2px);
 }
+
+.achievement-toast {
+    position: fixed;
+    top: 90px;
+    right: 32px;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    max-width: 380px;
+    padding: 18px 20px;
+
+    background: #111;
+    color: #fff;
+
+    border-radius: 22px;
+
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+
+    animation: achievementSlide 0.45s ease both;
+}
+
+.achievement-toast span {
+    font-size: 34px;
+}
+
+.achievement-toast strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.achievement-toast p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+@keyframes achievementSlide {
+    from {
+        opacity: 0;
+        transform: translateX(30px) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}

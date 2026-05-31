@@ -21,6 +21,10 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [achievement, setAchievement] = useState<{
+    icon: string;
+    title: string;
+  } | null>(null);
 
   if (!course) {
     return <h1>Курсът не е намерен</h1>;
@@ -60,6 +64,18 @@ const Quiz = () => {
       });
 
       setIsSaved(true);
+
+      if (percentage === 100) {
+        setAchievement({
+          icon: "💯",
+          title: "Отключи постижение: Отличен резултат",
+        });
+      } else {
+        setAchievement({
+          icon: "🏁",
+          title: "Отключи постижение: Първи тест",
+        });
+      }
     }
   };
 
@@ -68,6 +84,17 @@ const Quiz = () => {
 
     return (
       <main className="quiz-page">
+        {achievement && (
+          <div className="achievement-toast">
+            <span>{achievement.icon}</span>
+
+            <div>
+              <strong>Ново постижение!</strong>
+              <p>{achievement.title}</p>
+            </div>
+          </div>
+        )}
+
         <section className="quiz-result-card">
           <p className="quiz-label">Тестът е завършен</p>
 
@@ -96,6 +123,7 @@ const Quiz = () => {
                 setScore(0);
                 setFinished(false);
                 setIsSaved(false);
+                setAchievement(null);
               }}
             >
               Опитай отново
