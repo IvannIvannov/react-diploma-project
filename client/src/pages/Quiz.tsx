@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import { useCourses } from "../context/useCourses";
 import { useAuth } from "../hooks/useAuth";
@@ -62,6 +62,10 @@ const Quiz = () => {
       clearTimeout(hideTimer);
     };
   }, [achievements]);
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
   if (!course) {
     return <h1>Курсът не е намерен</h1>;

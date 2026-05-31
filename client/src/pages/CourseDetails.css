@@ -172,6 +172,54 @@
     transform: translateY(-2px);
 }
 
+.quiz-login-required {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.quiz-login-required p {
+    margin: 0;
+
+    color: #6b665f;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.quiz-auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.quiz-auth-buttons a {
+    padding: 12px 18px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+    font-weight: 800;
+
+    transition: 0.25s ease;
+}
+
+.quiz-auth-buttons a:first-child {
+    background: #111;
+    color: white;
+}
+
+.quiz-auth-buttons a:last-child {
+    background: #f3f1ec;
+
+    color: #111;
+
+    border: 1px solid #e2ddd4;
+}
+
+.quiz-auth-buttons a:hover {
+    transform: translateY(-2px);
+}
+
 @media (max-width: 950px) {
     .course-workspace {
         grid-template-columns: 1fr;

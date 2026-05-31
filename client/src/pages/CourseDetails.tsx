@@ -1,10 +1,15 @@
 import { Link, useParams } from "react-router-dom";
+
 import { useCourses } from "../context/useCourses";
+import { useAuth } from "../hooks/useAuth";
+
 import "./CourseDetails.css";
 
 const CourseDetails = () => {
   const { id } = useParams();
+
   const { courses } = useCourses();
+  const { user } = useAuth();
 
   const course = courses.find((c) => c.id === id);
 
@@ -69,9 +74,24 @@ const CourseDetails = () => {
             </p>
 
             <div className="quiz-card-actions">
-              <Link to={`/courses/${course.id}/quiz`} replace>
-                Стартирай тест
-              </Link>
+              {user ? (
+                <Link to={`/courses/${course.id}/quiz`} replace>
+                  Стартирай тест
+                </Link>
+              ) : (
+                <div className="quiz-login-required">
+                  <p>
+                    За да стартираш теста и да запазваш резултатите си, трябва
+                    да имаш акаунт.
+                  </p>
+
+                  <div className="quiz-auth-buttons">
+                    <Link to="/login">Вход</Link>
+
+                    <Link to="/register">Регистрация</Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </aside>
