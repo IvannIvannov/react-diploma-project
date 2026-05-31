@@ -119,6 +119,12 @@ const Dashboard = () => {
           <Link to="/courses">Продължи обучението</Link>
         </div>
 
+        {courseProgress === 100 && (
+          <Link to="/certificate" className="welcome-certificate-button">
+            🎓 Виж сертификат
+          </Link>
+        )}
+
         <div className="welcome-visual">
           <strong>{courseProgress}%</strong>
           <span>общ прогрес</span>
@@ -231,12 +237,6 @@ const Dashboard = () => {
           })}
         </div>
       </section>
-
-      {courseProgress === 100 && (
-        <Link to="/certificate" className="certificate-button">
-          🎓 Виж сертификат
-        </Link>
-      )}
     </main>
   );
 };
