@@ -1,3 +1,6 @@
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 import { useAuth } from "../hooks/useAuth";
 
 import "./Certificate.css";
@@ -7,9 +10,31 @@ const Certificate = () => {
 
   const today = new Date().toLocaleDateString("bg-BG");
 
+  const downloadCertificate = async () => {
+    const certificate = document.getElementById("certificate");
+
+    if (!certificate) return;
+
+    const canvas = await html2canvas(certificate, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    const image = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(image, "PNG", 0, 0, pageWidth, pageHeight);
+
+    pdf.save("ReactLearn-Certificate.pdf");
+  };
+
   return (
     <main className="certificate-page">
-      <section className="certificate-card">
+      <section id="certificate" className="certificate-card">
         <p className="certificate-label">Certificate of Completion</p>
 
         <h1>React Learning Platform</h1>
@@ -34,6 +59,15 @@ const Certificate = () => {
           </div>
         </div>
       </section>
+
+      <div className="certificate-actions">
+        <button
+          className="download-certificate-button"
+          onClick={downloadCertificate}
+        >
+          ⬇ Изтегли сертификата
+        </button>
+      </div>
     </main>
   );
 };
