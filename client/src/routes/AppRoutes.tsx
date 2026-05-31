@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 import EditCourse from "../pages/EditCourse";
 import Quiz from "../pages/Quiz";
 import AddQuiz from "../pages/AddQuiz";
+import Certificate from "../pages/Certificate";
 
 const AppRoutes = () => {
   return (
@@ -50,6 +51,7 @@ const AppRoutes = () => {
               </AdminRoute>
             }
           />
+          <Route path="/certificate" element={<Certificate />} />
         </Routes>
       </Layout>
     </BrowserRouter>

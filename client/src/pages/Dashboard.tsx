@@ -231,6 +231,12 @@ const Dashboard = () => {
           })}
         </div>
       </section>
+
+      {courseProgress === 100 && (
+        <Link to="/certificate" className="certificate-button">
+          🎓 Виж сертификат
+        </Link>
+      )}
     </main>
   );
 };

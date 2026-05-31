@@ -372,6 +372,29 @@
     color: #6b665f;
 }
 
+.certificate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 24px;
+    padding: 14px 22px;
+
+    background: #111;
+    color: white;
+
+    border-radius: 16px;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: 0.25s ease;
+}
+
+.certificate-button:hover {
+    transform: translateY(-2px);
+}
+
 @media (max-width: 1100px) {
     .badges-grid {
         grid-template-columns: repeat(2, 1fr);
