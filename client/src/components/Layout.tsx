@@ -15,7 +15,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="app-layout">
       <Navbar />
 
-      <main className="app-main">{children}</main>
+      <main key={location.pathname} className="app-main">
+        {children}
+      </main>
 
       {!hideFooter && <Footer />}
     </div>
