@@ -42,7 +42,14 @@ const Dashboard = () => {
   }, [user]);
 
   if (loading) {
-    return <h1>Зареждане...</h1>;
+    return (
+      <main className="dashboard-page">
+        <section className="dashboard-loading">
+          <div className="dashboard-loader" />
+          <p>Зареждаме твоя прогрес...</p>
+        </section>
+      </main>
+    );
   }
 
   const completedTests = results.length;
