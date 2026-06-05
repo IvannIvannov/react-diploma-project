@@ -33,7 +33,15 @@ const Courses = () => {
     loadResults();
   }, [user]);
 
-  const totalQuizzes = courses.reduce(
+  const getEstimatedDuration = (duration: string) => {
+    const minutes = Number(duration.replace(/\D/g, ""));
+
+    if (!minutes) return duration;
+
+    return `${minutes + 15} мин`;
+  };
+
+  const totalQuestions = courses.reduce(
     (total, course) => total + (course.quizzes?.length || 0),
     0,
   );
@@ -70,8 +78,8 @@ const Courses = () => {
           </div>
 
           <div>
-            <strong>{totalQuizzes}</strong>
-            <span>теста</span>
+            <strong>{totalQuestions}</strong>
+            <span>въпроса</span>
           </div>
 
           <div>
@@ -107,8 +115,8 @@ const Courses = () => {
                 </div>
 
                 <div className="course-info">
-                  <span>{course.quizzes?.length || 0} теста</span>
-                  <span>{course.duration}</span>
+                  <span>{course.quizzes?.length || 0} въпроса</span>
+                  <span>{getEstimatedDuration(course.duration)}</span>
                 </div>
 
                 <div className="course-actions">
