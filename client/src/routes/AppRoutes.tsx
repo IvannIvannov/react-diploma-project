@@ -14,15 +14,19 @@ import EditCourse from "../pages/EditCourse";
 import Quiz from "../pages/Quiz";
 import AddQuiz from "../pages/AddQuiz";
 import Certificate from "../pages/Certificate";
+import ScrollToTop from "../components/ScrollToTop";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CourseDetails />} />
+
           <Route
             path="/dashboard"
             element={
@@ -31,8 +35,10 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route
             path="/create-course"
             element={
@@ -41,8 +47,10 @@ const AppRoutes = () => {
               </AdminRoute>
             }
           />
+
           <Route path="/edit-course/:id" element={<EditCourse />} />
           <Route path="/courses/:id/quiz" element={<Quiz />} />
+
           <Route
             path="/add-quiz/:courseId"
             element={
@@ -51,6 +59,7 @@ const AppRoutes = () => {
               </AdminRoute>
             }
           />
+
           <Route path="/certificate" element={<Certificate />} />
         </Routes>
       </Layout>
