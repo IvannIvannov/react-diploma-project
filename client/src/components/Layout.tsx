@@ -9,7 +9,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   const hideFooter =
-    location.pathname === "/login" || location.pathname === "/register";
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    location.pathname.includes("/quiz");
 
   return (
     <div className="app-layout">
