@@ -17,7 +17,7 @@ type QuizResult = {
 };
 
 const Courses = () => {
-  const { courses, deleteCourse } = useCourses();
+  const { courses } = useCourses();
   const { user } = useAuth();
 
   const [results, setResults] = useState<QuizResult[]>([]);
@@ -113,10 +113,6 @@ const Courses = () => {
 
                 <div className="course-actions">
                   <Link to={`/courses/${course.id}`}>Отвори</Link>
-
-                  <button onClick={() => deleteCourse(course.id)}>
-                    Изтрий
-                  </button>
                 </div>
               </article>
             );
