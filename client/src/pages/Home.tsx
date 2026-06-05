@@ -196,24 +196,40 @@ const Home = () => {
 
       <section className="learning-path-section reveal" data-reveal>
         <div>
-          <p className="hero-label">Учебен път</p>
+          <p className="hero-label">Какво ще постигнеш</p>
 
-          <h2>От начинаещ до уверен React разработчик.</h2>
+          <h2>След обучението ще можеш да създаваш реални React приложения.</h2>
 
           <p>
-            Платформата води обучаващите се през най-важните React теми стъпка
-            по стъпка.
+            Усвояваш най-важните концепции и умения, необходими за изграждане на
+            модерни frontend приложения.
           </p>
         </div>
 
         <div className="path-list">
-          {courses.slice(0, 4).map((course, index) => (
-            <div className="path-item" key={course.id}>
-              <strong>{String(index + 1).padStart(2, "0")}</strong>
+          <div className="path-item">
+            <strong>✓</strong>
 
-              <span>{course.title}</span>
-            </div>
-          ))}
+            <span>Създаване на React компоненти и JSX структури</span>
+          </div>
+
+          <div className="path-item">
+            <strong>✓</strong>
+
+            <span>Управление на състояние чрез Hooks и Context API</span>
+          </div>
+
+          <div className="path-item">
+            <strong>✓</strong>
+
+            <span>Работа с API заявки и асинхронни операции</span>
+          </div>
+
+          <div className="path-item">
+            <strong>✓</strong>
+
+            <span>Изграждане на завършено React приложение от нулата</span>
+          </div>
         </div>
       </section>
 
