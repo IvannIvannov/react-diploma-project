@@ -112,7 +112,9 @@ const Courses = () => {
                 </div>
 
                 <div className="course-actions">
-                  <Link to={`/courses/${course.id}`}>Отвори</Link>
+                  <Link to={`/courses/${course.id}`}>
+                    Отвори <span>→</span>
+                  </Link>
                 </div>
               </article>
             );

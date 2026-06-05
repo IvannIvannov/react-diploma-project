@@ -186,15 +186,24 @@
     background: #111;
     color: #fff;
     border-color: #111;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: background 0.25s ease;
+}
+
+.course-actions a span {
+    transition: transform 0.25s ease;
 }
 
 .course-actions a:hover {
     background: #000;
 }
 
-.course-actions button:hover {
-    background: #f7eaea;
-    color: #991b1b;
+.course-actions a:hover span {
+    transform: translateX(4px);
 }
 
 .empty-courses {
@@ -208,20 +217,20 @@
 }
 
 .course-card.completed {
-  border-color: #c9d8c5;
-  background: #fbfdf9;
+    border-color: #c9d8c5;
+    background: #fbfdf9;
 }
 
 .course-status.completed {
-  background: #ecfdf3;
-  border-color: #bbf7d0;
-  color: #166534;
+    background: #ecfdf3;
+    border-color: #bbf7d0;
+    color: #166534;
 }
 
 .course-status.pending {
-  background: #f3f1ec;
-  border-color: #ded9d0;
-  color: #6b665f;
+    background: #f3f1ec;
+    border-color: #ded9d0;
+    color: #6b665f;
 }
 
 @media (max-width: 1000px) {
