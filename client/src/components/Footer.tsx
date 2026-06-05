@@ -5,7 +5,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-top">
-          <h2>ReactLearn</h2>
+          <div className="footer-logo">
+            <span className="footer-logo-icon">⚛</span>
+            <h2>ReactLearn</h2>
+          </div>
 
           <p>
             Модерна платформа за самообучение по React чрез структурирани уроци,
