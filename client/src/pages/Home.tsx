@@ -113,11 +113,15 @@ const Home = () => {
 
             <div className="lesson-list">
               {courses.slice(0, 3).map((course) => (
-                <div className="lesson-item" key={course.id}>
+                <Link
+                  to={`/courses/${course.id}`}
+                  className="lesson-item"
+                  key={course.id}
+                >
                   <span>{course.title}</span>
 
                   <span>→</span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

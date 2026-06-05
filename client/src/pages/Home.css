@@ -525,6 +525,17 @@
   filter: blur(0);
 }
 
+.lesson-item {
+  text-decoration: none;
+  color: #111;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.lesson-item:hover {
+  transform: translateX(6px);
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .hero-section,
