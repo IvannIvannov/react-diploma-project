@@ -209,11 +209,16 @@
 }
 
 .features-section,
-.learning-path-section,
-.feedback-section {
+.learning-path-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 80px 32px;
+}
+
+.feedback-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 32px 36px;
 }
 
 .section-heading {
@@ -308,8 +313,7 @@
 
 .cta-section {
   max-width: 1200px;
-
-  margin: 16px auto 0;
+  margin: 24px auto 0;
   padding: 80px 32px;
 
   text-align: center;
@@ -393,13 +397,13 @@
 .feedback-carousel {
   overflow: hidden;
   width: 100%;
+  padding: 8px 0;
 }
 
 .feedback-track {
   display: flex;
   gap: 22px;
   width: max-content;
-
   animation: feedbackSlide 24s linear infinite;
 }
 
@@ -410,7 +414,6 @@
 .feedback-card {
   width: 360px;
   min-height: 260px;
-
   padding: 32px;
 
   background: #fff;
@@ -418,13 +421,13 @@
   border-radius: 28px;
 
   flex-shrink: 0;
+  box-shadow: none;
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
 .feedback-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.07);
+  background: #fbfaf7;
 }
 
 @keyframes feedbackSlide {
@@ -473,16 +476,14 @@
 .hero-card,
 .stat-card,
 .feature-card,
-.path-item,
-.feedback-card {
+.path-item {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-card:hover,
 .stat-card:hover,
 .feature-card:hover,
-.path-item:hover,
-.feedback-card:hover {
+.path-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.07);
 }
