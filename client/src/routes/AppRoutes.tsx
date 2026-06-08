@@ -15,6 +15,7 @@ import Quiz from "../pages/Quiz";
 import AddQuiz from "../pages/AddQuiz";
 import Certificate from "../pages/Certificate";
 import ScrollToTop from "../components/ScrollToTop";
+import VerifyEmail from "../pages/VerifyEmail";
 
 const AppRoutes = () => {
   return (
@@ -38,6 +39,7 @@ const AppRoutes = () => {
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
 
           <Route
             path="/create-course"
