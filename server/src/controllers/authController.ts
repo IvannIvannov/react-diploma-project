@@ -38,24 +38,58 @@ export const register = async (req: Request, res: Response) => {
       user.email,
       "Потвърди своя ReactLearn акаунт",
       `
-        <h2>Здравей, ${user.name}!</h2>
-        <p>Благодарим ти, че се регистрира в ReactLearn.</p>
-        <p>За да активираш акаунта си, натисни бутона:</p>
-        <a 
-          href="${verificationLink}" 
+    <div
+      style="
+        max-width:600px;
+        margin:0 auto;
+        padding:40px;
+        font-family:Arial,sans-serif;
+        background:#ffffff;
+        border:1px solid #e5e7eb;
+        border-radius:16px;
+      "
+    >
+      <h1 style="margin:0 0 20px; color:#111; font-size:28px;">
+        Добре дошъл в ReactLearn 🚀
+      </h1>
+
+      <p style="color:#4b5563; font-size:16px; line-height:1.7;">
+        Благодарим ти за регистрацията.
+      </p>
+
+      <p style="color:#4b5563; font-size:16px; line-height:1.7;">
+        За да активираш своя акаунт и да получиш достъп до всички курсове,
+        натисни бутона по-долу.
+      </p>
+
+      <div style="margin:32px 0;">
+        <a
+          href="${verificationLink}"
           style="
             display:inline-block;
-            padding:12px 18px;
+            padding:14px 24px;
             background:#111;
             color:#fff;
             text-decoration:none;
-            border-radius:10px;
-            font-weight:bold;
+            border-radius:12px;
+            font-weight:700;
           "
         >
           Потвърди акаунта
         </a>
-      `,
+      </div>
+
+      <p style="color:#6b7280; font-size:14px; line-height:1.6;">
+        Ако не си създавал акаунт в ReactLearn, можеш спокойно да игнорираш този имейл.
+      </p>
+
+      <hr style="border:none; border-top:1px solid #e5e7eb; margin:24px 0;" />
+
+      <p style="color:#9ca3af; font-size:13px; margin:0;">
+        © ReactLearn • Платформа за самообучение по React
+      </p>
+    </div>
+  `,
     );
 
     res.status(201).json({
