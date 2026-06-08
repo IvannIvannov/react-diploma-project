@@ -19,6 +19,7 @@ type QuizResult = {
 
 const Dashboard = () => {
   const { user } = useAuth();
+  console.log(user);
   const { courses } = useCourses();
 
   const [results, setResults] = useState<QuizResult[]>([]);
@@ -82,6 +83,9 @@ const Dashboard = () => {
     (course) => course.id === latestResult?.courseId,
   );
 
+  const displayName =
+    user?.name && user.name !== "User" ? user.name : "приятелю";
+
   const badges = [
     {
       title: "Първи тест",
@@ -116,7 +120,7 @@ const Dashboard = () => {
         <div>
           <p>Dashboard</p>
 
-          <h1>Здравей, {user?.name || "приятелю"} 👋</h1>
+          <h1>Здравей, {displayName} 👋</h1>
 
           <span>
             Проследи своя напредък, резултатите от тестовете и завършените React
