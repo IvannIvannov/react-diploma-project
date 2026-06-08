@@ -33,4 +33,14 @@ const quizResultSchema = new mongoose.Schema(
   },
 );
 
+quizResultSchema.index(
+  {
+    userId: 1,
+    courseId: 1,
+  },
+  {
+    unique: true,
+  },
+);
+
 export default mongoose.model("QuizResult", quizResultSchema);

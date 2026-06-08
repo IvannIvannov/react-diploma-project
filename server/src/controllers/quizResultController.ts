@@ -6,15 +6,24 @@ export const saveQuizResult = async (req: Request, res: Response) => {
   try {
     const { userId, courseId, score, totalQuestions, percentage } = req.body;
 
-    const result = await QuizResult.create({
-      userId,
-      courseId,
-      score,
-      totalQuestions,
-      percentage,
-    });
+    const result = await QuizResult.findOneAndUpdate(
+      {
+        userId,
+        courseId,
+      },
+      {
+        score,
+        totalQuestions,
+        percentage,
+      },
+      {
+        new: true,
+        upsert: true,
+        runValidators: true,
+      },
+    );
 
-    res.status(201).json(result);
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
 
@@ -31,7 +40,7 @@ export const getUserResults = async (req: Request, res: Response) => {
     const results = await QuizResult.find({
       userId,
     }).sort({
-      createdAt: -1,
+      updatedAt: -1,
     });
 
     res.json(results);
