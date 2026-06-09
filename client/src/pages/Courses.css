@@ -1,6 +1,11 @@
 .courses-page {
     min-height: 100vh;
-    background: #fbfaf7;
+
+    background:
+        radial-gradient(circle at top left, rgba(97, 218, 251, 0.18), transparent 36%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 32%),
+        #fbfaf7;
+
     padding: 90px 32px;
 }
 
@@ -8,7 +13,7 @@
     max-width: 1180px;
     margin: 0 auto 64px;
     padding-bottom: 42px;
-    border-bottom: 1px solid #ded9d0;
+    border-bottom: 1px solid #bae6fd;
 }
 
 .courses-label {
@@ -52,8 +57,9 @@
 .courses-stats div {
     min-width: 140px;
     padding: 18px 20px;
-    background: #fff;
-    border: 1px solid #e5e0d8;
+
+    background: #eef9fd;
+    border: 1px solid #bae6fd;
     border-radius: 24px;
 }
 
@@ -84,8 +90,9 @@
     align-items: center;
 
     padding: 28px;
-    background: #fff;
-    border: 1px solid #e5e0d8;
+
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #dff3fb;
     border-radius: 30px;
 
     transition: 0.25s ease;
@@ -93,7 +100,8 @@
 
 .course-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 24px 60px rgba(97, 218, 251, 0.13);
+    border-color: #bae6fd;
 }
 
 .course-index {
@@ -105,8 +113,8 @@
     align-items: center;
     justify-content: center;
 
-    background: #111;
-    color: #fff;
+    background: #61dafb;
+    color: #111;
 
     font-size: 15px;
     font-weight: 900;
@@ -151,10 +159,10 @@
     padding: 10px 14px;
     border-radius: 999px;
 
-    background: #f3f1ec;
-    border: 1px solid #ded9d0;
+    background: #f0fbff;
+    border: 1px solid #bae6fd;
 
-    color: #5f5b56;
+    color: #0369a1;
     font-size: 13px;
     font-weight: 800;
 }
@@ -183,9 +191,9 @@
 }
 
 .course-actions a {
-    background: #111;
-    color: #fff;
-    border-color: #111;
+    background: #61dafb;
+    color: white;
+    border-color: #61dafb;
 
     display: flex;
     align-items: center;
@@ -194,12 +202,12 @@
     transition: background 0.25s ease;
 }
 
-.course-actions a span {
-    transition: transform 0.25s ease;
+.course-actions a:hover {
+    background: #38bdf8;
 }
 
-.course-actions a:hover {
-    background: #000;
+.course-actions a span {
+    transition: transform 0.25s ease;
 }
 
 .course-actions a:hover span {
@@ -217,8 +225,8 @@
 }
 
 .course-card.completed {
-    border-color: #c9d8c5;
-    background: #fbfdf9;
+    border-color: #86efac;
+    background: #f0fdf4;
 }
 
 .course-status.completed {
