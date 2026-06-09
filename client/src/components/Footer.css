@@ -2,8 +2,8 @@
     margin-top: 70px;
     padding: 64px 80px 28px;
 
-    background: #ebe6de;
-    border-top: 1px solid #d8d2c8;
+    background: #eef9fd;
+    border-top: 1px solid #bae6fd;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 }
@@ -35,7 +35,7 @@
     max-width: 520px;
     margin: 0;
 
-    color: #6b665f;
+    color: #4b5563;
 
     font-size: 17px;
     line-height: 1.8;
@@ -44,7 +44,8 @@
 .footer-divider {
     margin: 38px 0 24px;
     height: 1px;
-    background: #d8d2c8;
+
+    background: #bae6fd;
 }
 
 .footer-bottom {
@@ -53,7 +54,7 @@
     align-items: center;
     gap: 20px;
 
-    color: #6b665f;
+    color: #64748b;
 
     font-size: 14px;
     font-weight: 700;
