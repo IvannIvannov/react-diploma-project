@@ -33,14 +33,6 @@ const Courses = () => {
     loadResults();
   }, [user]);
 
-  const getEstimatedDuration = (duration: string) => {
-    const minutes = Number(duration.replace(/\D/g, ""));
-
-    if (!minutes) return duration;
-
-    return `${minutes + 15} мин`;
-  };
-
   const totalQuestions = courses.reduce(
     (total, course) => total + (course.quizzes?.length || 0),
     0,
@@ -56,6 +48,14 @@ const Courses = () => {
     courses.length > 0
       ? Math.round((completedCourses / courses.length) * 100)
       : 0;
+
+  const getCourseLevel = (index: number) => {
+    if (index < 2) return "Начинаещ";
+
+    if (index < 4) return "Средно ниво";
+
+    return "Напреднал";
+  };
 
   return (
     <main className="courses-page">
@@ -116,7 +116,7 @@ const Courses = () => {
 
                 <div className="course-info">
                   <span>{course.quizzes?.length || 0} въпроса</span>
-                  <span>{getEstimatedDuration(course.duration)}</span>
+                  <span>{getCourseLevel(index)}</span>
                 </div>
 
                 <div className="course-actions">
