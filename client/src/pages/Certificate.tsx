@@ -89,12 +89,10 @@ const Certificate = () => {
 
         <h1>React Learning Platform</h1>
 
-        <span>Този сертификат се присъжда на</span>
-
-        <h2>{user?.name}</h2>
+        <span>Този сертификат се присъжда за</span>
 
         <p className="certificate-text">
-          за успешно завършване на всички React модули и тестове в платформата.
+          успешно завършване на всички React модули и тестове в платформата.
         </p>
 
         <div className="certificate-results">
