@@ -31,6 +31,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [answers, setAnswers] = useState<number[]>([]);
 
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [activeAchievement, setActiveAchievement] = useState(0);
@@ -80,6 +81,10 @@ const Quiz = () => {
   const progress = Math.round(((current + 1) / course.quizzes.length) * 100);
 
   const handleAnswer = async (index: number) => {
+    const updatedAnswers = [...answers, index];
+
+    setAnswers(updatedAnswers);
+
     const isCorrect = index === quiz.correctAnswer;
     const updatedScore = isCorrect ? score + 1 : score;
 
@@ -210,6 +215,65 @@ const Quiz = () => {
               : "Прегледай отново урока и опитай теста повторно."}
           </p>
 
+          <div className="quiz-review">
+            <h2>Преглед на отговорите</h2>
+
+            {course.quizzes.map((question, questionIndex) => {
+              const selectedAnswer = answers[questionIndex];
+              const correctAnswer = question.correctAnswer;
+              const isAnswerCorrect = selectedAnswer === correctAnswer;
+
+              return (
+                <div className="quiz-review-item" key={question.question}>
+                  <div className="quiz-review-top">
+                    <strong>
+                      Въпрос {questionIndex + 1}: {question.question}
+                    </strong>
+
+                    <span
+                      className={
+                        isAnswerCorrect
+                          ? "answer-status correct"
+                          : "answer-status wrong"
+                      }
+                    >
+                      {isAnswerCorrect ? "Правилен" : "Грешен"}
+                    </span>
+                  </div>
+
+                  <div className="quiz-review-options">
+                    {question.options.map((option, optionIndex) => {
+                      const isSelected = optionIndex === selectedAnswer;
+                      const isCorrect = optionIndex === correctAnswer;
+
+                      let optionClass = "review-option";
+
+                      if (isCorrect) {
+                        optionClass += " correct";
+                      }
+
+                      if (isSelected && !isCorrect) {
+                        optionClass += " wrong";
+                      }
+
+                      return (
+                        <div className={optionClass} key={option}>
+                          <span>{option}</span>
+
+                          {isCorrect && <small>Правилен отговор</small>}
+
+                          {isSelected && !isCorrect && (
+                            <small>Твоят отговор</small>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
           <div className="quiz-result-actions">
             <button
               onClick={() => {
@@ -217,6 +281,7 @@ const Quiz = () => {
                 setScore(0);
                 setFinished(false);
                 setIsSaved(false);
+                setAnswers([]);
                 setAchievements([]);
                 setActiveAchievement(0);
               }}
