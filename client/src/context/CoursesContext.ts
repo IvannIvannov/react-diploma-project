@@ -17,6 +17,12 @@ export type Course = {
   documentationUrl: string;
   topics: string[];
   content: string;
+
+  theory?: string;
+  exampleTitle?: string;
+  exampleCode?: string;
+  exampleExplanation?: string;
+
   quizzes: Quiz[];
 };
 

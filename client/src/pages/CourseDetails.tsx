@@ -35,6 +35,16 @@ const CourseDetails = () => {
             <p>{course.content}</p>
           </div>
 
+          {course.theory && (
+            <div className="course-theory-box">
+              <span>Теория</span>
+
+              <h2>Кратко обяснение</h2>
+
+              <p>{course.theory}</p>
+            </div>
+          )}
+
           {course.documentationUrl && (
             <a
               className="documentation-card"
@@ -94,6 +104,20 @@ const CourseDetails = () => {
               )}
             </div>
           </div>
+
+          {course.exampleCode && (
+            <div className="course-example-box">
+              <span>Пример</span>
+
+              <h2>{course.exampleTitle}</h2>
+
+              <pre>
+                <code>{course.exampleCode}</code>
+              </pre>
+
+              <p>{course.exampleExplanation}</p>
+            </div>
+          )}
         </aside>
       </section>
     </main>
