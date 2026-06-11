@@ -40,7 +40,7 @@ export const getUserResults = async (req: Request, res: Response) => {
     const results = await QuizResult.find({
       userId,
     }).sort({
-      updatedAt: -1,
+      courseId: 1,
     });
 
     res.json(results);

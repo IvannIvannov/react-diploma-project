@@ -10,20 +10,28 @@ import {
 
 type ChartResult = {
   _id: string;
+  courseId: string;
   percentage: number;
   createdAt: string;
+  updatedAt?: string;
 };
 
 type ResultsChartProps = {
   results: ChartResult[];
 };
 
+const getCourseNumber = (courseId: string) => {
+  const match = courseId.match(/\d+/);
+
+  return match ? Number(match[0]) : 0;
+};
+
 const ResultsChart = ({ results }: ResultsChartProps) => {
   const chartData = results
     .slice()
-    .reverse()
-    .map((result, index) => ({
-      name: `Тест ${index + 1}`,
+    .sort((a, b) => getCourseNumber(a.courseId) - getCourseNumber(b.courseId))
+    .map((result) => ({
+      name: `Тест ${getCourseNumber(result.courseId)}`,
       резултат: result.percentage,
     }));
 
