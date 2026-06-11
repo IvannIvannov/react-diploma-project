@@ -43,9 +43,12 @@ const ResultsChart = ({ results }: ResultsChartProps) => {
       </div>
 
       <ResponsiveContainer width="100%" height={280}>
-        <LineChart data={chartData}>
+        <LineChart
+          data={chartData}
+          margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="name" interval={0} tick={{ fontSize: 12 }} />
           <YAxis domain={[0, 100]} />
           <Tooltip />
           <Line
