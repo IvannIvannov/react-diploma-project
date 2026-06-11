@@ -473,6 +473,33 @@ export default App;`,
     topics: ["Context", "Provider", "Global state"],
     content:
       "Този модул показва как Context API помага за избягване на prop drilling и за управление на общи данни.",
+    theory:
+      "Context API е механизъм, предоставен от React, който позволява споделянето на данни между множество компоненти без необходимост от предаване на props през всяко ниво на компонентната йерархия. Този проблем е известен като prop drilling и често води до усложняване на кода при по-големи приложения. Чрез Context API разработчиците могат да създадат централизирано място за съхранение на данни, които се използват от различни части на приложението. Най-често Context API се използва за управление на информация за текущия потребител, тема на приложението, настройки или глобални данни. Основните елементи на Context API са Context, Provider и Consumer, като в съвременните React приложения най-често се използва hook-ът useContext. Provider компонентът предоставя данни към всички вложени компоненти, а useContext позволява лесното им извличане. Използването на Context API подобрява организацията на кода и намалява необходимостта от предаване на голям брой props. Това прави приложенията по-лесни за поддръжка и разширяване. В платформата ReactLearn Context API се използва за управление на потребителските данни и курсовете, което осигурява удобен достъп до информацията от различни части на системата.",
+
+    exampleTitle: "Използване на Context API",
+
+    exampleCode: `import { createContext, useContext } from "react";
+
+const UserContext = createContext();
+
+function Profile() {
+  const user = useContext(UserContext);
+
+  return <h2>Здравей, {user.name}</h2>;
+}
+
+function App() {
+  return (
+    <UserContext.Provider value={{ name: "Anastasia" }}>
+      <Profile />
+    </UserContext.Provider>
+  );
+}
+
+export default App;`,
+
+    exampleExplanation:
+      "В примера е създаден UserContext, който предоставя информация за потребителя към всички вложени компоненти. Компонентът Profile използва useContext, за да получи достъп до данните без необходимост от предаване на props през междинни компоненти.",
     quizzes: [
       {
         id: "7-1",
