@@ -15,6 +15,7 @@ type QuizResult = {
   totalQuestions: number;
   percentage: number;
   createdAt: string;
+  updatedAt?: string;
 };
 
 const Dashboard = () => {
@@ -77,7 +78,13 @@ const Dashboard = () => {
   const bestScore =
     results.length > 0 ? Math.max(...results.map((r) => r.percentage)) : 0;
 
-  const latestResult = results[0];
+  const latestResult = results
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(b.updatedAt || b.createdAt).getTime() -
+        new Date(a.updatedAt || a.createdAt).getTime(),
+    )[0];
 
   const latestCourse = courses.find(
     (course) => course.id === latestResult?.courseId,
