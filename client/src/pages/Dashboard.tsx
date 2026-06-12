@@ -127,7 +127,7 @@ const Dashboard = () => {
         <div>
           <p>Dashboard</p>
 
-          <h1>Здравей, {displayName} 👋</h1>
+          <h1>Здравей, {displayName}</h1>
 
           <span>
             Проследи своя напредък, резултатите от тестовете и завършените React
@@ -139,7 +139,7 @@ const Dashboard = () => {
 
         {courseProgress === 100 && (
           <Link to="/certificate" className="welcome-certificate-button">
-            🎓 Виж сертификат
+            🏅 Значка за завършване
           </Link>
         )}
 

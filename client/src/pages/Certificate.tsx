@@ -79,17 +79,17 @@ const Certificate = () => {
 
     pdf.addImage(image, "PNG", 0, 0, pageWidth, pageHeight);
 
-    pdf.save("ReactLearn-Certificate.pdf");
+    pdf.save("ReactLearn-Achievement-Badge.pdf");
   };
 
   return (
     <main className="certificate-page">
       <section id="certificate" className="certificate-card">
-        <p className="certificate-label">Certificate of Completion</p>
+        <p className="certificate-label">ReactLearn Achievement Badge</p>
 
-        <h1>React Learning Platform</h1>
+        <h1>Сертифициран ReactLearn потребител</h1>
 
-        <span>Този сертификат се присъжда за</span>
+        <span>Тази значка удостоверява</span>
 
         <p className="certificate-text">
           успешно завършване на всички React модули и тестове в платформата.
@@ -126,7 +126,7 @@ const Certificate = () => {
           className="download-certificate-button"
           onClick={downloadCertificate}
         >
-          ⬇ Изтегли сертификата
+          ⬇ Изтегли значката
         </button>
       </div>
     </main>
