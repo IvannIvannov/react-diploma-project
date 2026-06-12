@@ -281,6 +281,8 @@
 
     font-size: 17px;
     line-height: 1.75;
+
+    text-align: justify;
 }
 
 .course-example-box pre {
@@ -315,6 +317,7 @@
 
     text-align: center;
 }
+
 .documentation-card strong {
     display: flex;
     justify-content: center;
