@@ -138,6 +138,118 @@
     text-decoration: underline;
 }
 
+.verification-card {
+    text-align: center;
+}
+
+.verification-icon {
+    width: 95px;
+    height: 95px;
+
+    margin: 0 auto 28px;
+
+    border-radius: 50%;
+
+    background: #eefaff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 48px;
+}
+
+.verification-card h1 {
+    margin-bottom: 18px;
+
+    color: #111;
+
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.verification-text {
+    color: #666;
+
+    line-height: 1.8;
+}
+
+.verification-email {
+    display: block;
+
+    margin: 18px 0 32px;
+
+    color: #111;
+
+    font-size: 20px;
+}
+
+.verification-info {
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background: #f8fbfd;
+
+    text-align: left;
+
+    margin-bottom: 22px;
+}
+
+.verification-info p {
+    margin: 10px 0;
+
+    color: #444;
+}
+
+.verification-warning {
+    padding: 20px;
+
+    margin-bottom: 28px;
+
+    border-radius: 20px;
+
+    background: #fff8e8;
+
+    border: 1px solid #f7dc87;
+}
+
+.verification-warning strong {
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+.verification-warning span {
+    color: #666;
+
+    line-height: 1.7;
+}
+
+.verification-card button {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.verification-card button:hover {
+    transform: translateY(-2px);
+}
+
 @media (max-width: 600px) {
     .register-card {
         padding: 30px;
