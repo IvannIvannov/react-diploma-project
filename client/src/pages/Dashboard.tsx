@@ -75,6 +75,8 @@ const Dashboard = () => {
         )
       : 0;
 
+  const canGenerateCertificate = courseProgress === 100 && averageScore >= 90;
+
   const bestScore =
     results.length > 0 ? Math.max(...results.map((r) => r.percentage)) : 0;
 
@@ -117,7 +119,7 @@ const Dashboard = () => {
     {
       title: "React Master",
       icon: "🎓",
-      unlocked: courseProgress === 100,
+      unlocked: courseProgress === 100 && averageScore >= 90,
     },
   ];
 
@@ -137,7 +139,7 @@ const Dashboard = () => {
           <Link to="/courses">Продължи обучението</Link>
         </div>
 
-        {courseProgress === 100 && (
+        {canGenerateCertificate && (
           <Link to="/certificate" className="welcome-certificate-button">
             🏅 Значка за завършване
           </Link>
