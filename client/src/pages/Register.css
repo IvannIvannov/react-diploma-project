@@ -1,141 +1,191 @@
 .register-page {
     min-height: calc(100vh - 160px);
-    background: #fbfaf7;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 80px 24px;
+    padding: 90px 24px;
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(97, 218, 251, 0.22), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(56, 182, 255, 0.14), transparent 26%),
+        linear-gradient(180deg, #f6fafd 0%, #ffffff 45%, #eef9ff 100%);
 }
 
 .register-card {
+    position: relative;
+    overflow: hidden;
+
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
 
-    padding: 42px;
+    padding: 48px;
 
-    background: #fff;
-    border: 1px solid #e5e0d8;
-    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(186, 230, 253, 0.9);
+    border-radius: 36px;
 
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 24px 70px rgba(11, 33, 50, 0.08),
+        0 0 60px rgba(97, 218, 251, 0.12);
+}
+
+.register-card::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+
+    width: 260px;
+    height: 260px;
+
+    background: radial-gradient(circle, rgba(97, 218, 251, 0.28), transparent 70%);
+    filter: blur(12px);
+    pointer-events: none;
+}
+
+.register-header,
+.register-form,
+.register-footer-text,
+.verification-card>* {
+    position: relative;
+    z-index: 2;
 }
 
 .register-header {
-    margin-bottom: 32px;
+    margin-bottom: 34px;
 }
 
 .register-header p {
-    margin: 0 0 14px;
+    width: fit-content;
+    margin: 0 0 18px;
+    padding: 9px 14px;
 
-    color: #8a8580;
+    color: #0b2132;
+    background: rgba(97, 218, 251, 0.18);
+    border: 1px solid rgba(56, 182, 255, 0.28);
+    border-radius: 999px;
 
     font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 1.4px;
+    font-weight: 950;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
 }
 
-.register-header h1 {
-    margin: 0 0 16px;
+.register-header h1,
+.verification-card h1 {
+    margin: 0 0 18px;
 
-    color: #111;
+    color: #0b2132;
 
-    font-size: 42px;
+    font-size: 48px;
     line-height: 1;
-    font-weight: 900;
-
-    letter-spacing: -1.8px;
+    font-weight: 950;
+    letter-spacing: -2px;
 }
 
 .register-header span {
     display: block;
 
-    color: #6b665f;
+    color: #4b6475;
 
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.75;
 }
 
 .register-form {
     display: grid;
-    gap: 18px;
+    gap: 22px;
 }
 
 .register-form label {
     display: grid;
-    gap: 9px;
+    gap: 10px;
 
-    color: #111;
+    color: #0b2132;
 
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 850;
 }
 
 .register-form input {
     width: 100%;
 
-    padding: 15px 16px;
+    padding: 16px 18px;
 
-    background: #fbfaf7;
-    border: 1px solid #ded9d0;
-    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(186, 230, 253, 0.9);
+    border-radius: 18px;
 
-    color: #111;
+    color: #0b2132;
 
     font-size: 15px;
 
     outline: none;
-    transition: 0.2s ease;
+    transition: 0.25s ease;
 }
 
 .register-form input:focus {
-    background: #fff;
-    border-color: #111;
-    box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.08);
+    border-color: #38b6ff;
+
+    box-shadow:
+        0 0 0 4px rgba(56, 182, 255, 0.12),
+        0 10px 30px rgba(56, 182, 255, 0.1);
+
+    transform: translateY(-1px);
 }
 
-.register-form button {
-    margin-top: 10px;
-
-    padding: 15px 18px;
-
-    background: #111;
-    color: #fff;
+.register-form button,
+.verification-card button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
 
     border: none;
     border-radius: 999px;
 
+    background: linear-gradient(135deg, #0b2132, #38b6ff);
+    color: white;
+
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 950;
 
     cursor: pointer;
-    transition: 0.2s ease;
+
+    box-shadow: 0 16px 36px rgba(56, 182, 255, 0.24);
+
+    transition: 0.25s ease;
 }
 
-.register-form button:hover {
-    background: #000;
-    transform: translateY(-2px);
+.register-form button:hover,
+.verification-card button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 48px rgba(56, 182, 255, 0.34);
 }
 
 .register-footer-text {
-    margin: 24px 0 0;
+    margin: 28px 0 0;
 
-    color: #6b665f;
+    color: #64748b;
 
     text-align: center;
     font-size: 15px;
 }
 
 .register-footer-text a {
-    color: #111;
+    color: #38b6ff;
+
     font-weight: 900;
     text-decoration: none;
+
+    transition: 0.25s ease;
 }
 
 .register-footer-text a:hover {
-    text-decoration: underline;
+    color: #0b2132;
 }
 
 .verification-card {
@@ -143,34 +193,29 @@
 }
 
 .verification-icon {
-    width: 95px;
-    height: 95px;
+    width: 96px;
+    height: 96px;
 
     margin: 0 auto 28px;
-
-    border-radius: 50%;
-
-    background: #eefaff;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    background: linear-gradient(135deg, #0b2132, #38b6ff);
+    color: #ffffff;
+
+    border-radius: 28px;
+
     font-size: 48px;
-}
 
-.verification-card h1 {
-    margin-bottom: 18px;
-
-    color: #111;
-
-    font-size: 40px;
-    font-weight: 900;
+    box-shadow: 0 18px 42px rgba(56, 182, 255, 0.28);
 }
 
 .verification-text {
-    color: #666;
+    color: #4b6475;
 
+    font-size: 16px;
     line-height: 1.8;
 }
 
@@ -179,17 +224,19 @@
 
     margin: 18px 0 32px;
 
-    color: #111;
+    color: #0b2132;
 
     font-size: 20px;
+    font-weight: 900;
 }
 
 .verification-info {
     padding: 24px;
 
-    border-radius: 20px;
+    border-radius: 22px;
 
-    background: #f8fbfd;
+    background: #f6fafd;
+    border: 1px solid rgba(186, 230, 253, 0.85);
 
     text-align: left;
 
@@ -199,18 +246,17 @@
 .verification-info p {
     margin: 10px 0;
 
-    color: #444;
+    color: #4b6475;
 }
 
 .verification-warning {
-    padding: 20px;
+    padding: 22px;
 
     margin-bottom: 28px;
 
-    border-radius: 20px;
+    border-radius: 22px;
 
     background: #fff8e8;
-
     border: 1px solid #f7dc87;
 }
 
@@ -218,44 +264,31 @@
     display: block;
 
     margin-bottom: 10px;
+
+    color: #0b2132;
 }
 
 .verification-warning span {
-    color: #666;
+    color: #4b6475;
 
     line-height: 1.7;
 }
 
-.verification-card button {
-    width: 100%;
-
-    padding: 16px;
-
-    border: none;
-    border-radius: 999px;
-
-    background: #111;
-
-    color: white;
-
-    font-size: 16px;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.verification-card button:hover {
-    transform: translateY(-2px);
-}
-
 @media (max-width: 600px) {
-    .register-card {
-        padding: 30px;
+    .register-page {
+        padding: 60px 20px;
     }
 
-    .register-header h1 {
-        font-size: 34px;
+    .register-card {
+        padding: 34px 28px;
+    }
+
+    .register-header h1,
+    .verification-card h1 {
+        font-size: 38px;
+    }
+
+    .register-header span {
+        font-size: 16px;
     }
 }
