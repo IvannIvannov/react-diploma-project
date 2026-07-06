@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 import {
@@ -14,11 +14,18 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
+    navigate("/login");
   };
 
   return (
@@ -65,13 +72,7 @@ const Navbar = () => {
                     {user.email} ({user.role})
                   </span>
 
-                  <button
-                    className="dropdown-logout"
-                    onClick={() => {
-                      logout();
-                      closeMenu();
-                    }}
-                  >
+                  <button className="dropdown-logout" onClick={handleLogout}>
                     <HiOutlineArrowRightOnRectangle />
                     Изход
                   </button>
