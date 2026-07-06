@@ -1,73 +1,135 @@
-# React + TypeScript + Vite
+ReactLearn is a modern e-learning web application developed as a diploma project. The platform provides an interactive environment for learning React through structured lessons, practical examples, quizzes, progress tracking, achievements, and certificate generation.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The application features a modern and responsive interface inspired by contemporary learning platforms, offering users an engaging and intuitive learning experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- User registration and login
+- Email verification
+- Authentication with JWT
+- Browse available React courses
+- Detailed lesson pages
+- Practical React examples
+- Interactive quizzes
+- Quiz result tracking
+- Personal dashboard
+- Learning progress tracking
+- Achievement badges
+- Certificate generation after completing all requirements
+- Responsive design for desktop and mobile devices
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- React Router
+- CSS3
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Backend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone (https://github.com/IvannIvannov/react-diploma-project.git)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open the project folder:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd ReactLearn
 ```
+
+---
+
+## Install Dependencies
+
+Before running the project, install all required packages.
+
+### Client
+
+```bash
+cd client
+npm install
+```
+
+### Server
+
+Open a new terminal:
+
+```bash
+cd server
+npm install
+```
+
+---
+
+## Running the Project
+
+### Start the Client
+
+```bash
+cd client
+npm run dev
+```
+
+### Start the Server
+
+Open another terminal:
+
+```bash
+cd server
+npm run dev
+```
+
+---
+
+## Open the Application
+
+After both the client and the server are running, open the URL displayed in the terminal (usually):
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Project Structure
+
+```text
+ReactLearn
+│
+├── client
+│   ├── src
+│   ├── public
+│   ├── package.json
+│   └── ...
+│
+├── server
+│   ├── src
+│   ├── package.json
+│   └── ...
+│
+└── README.md
+```
+
+---
+
+## Author
+
+Developed by **Ivan Ivanov** as a diploma project.
