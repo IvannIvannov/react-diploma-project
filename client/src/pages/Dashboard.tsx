@@ -125,9 +125,9 @@ const Dashboard = () => {
 
   return (
     <main className="dashboard-page">
-      <section className="dashboard-welcome">
-        <div>
-          <p>Dashboard</p>
+      <section className="dashboard-hero">
+        <div className="dashboard-hero-content">
+          <p className="dashboard-label">Dashboard</p>
 
           <h1>Здравей, {displayName}</h1>
 
@@ -136,18 +136,28 @@ const Dashboard = () => {
             модули.
           </span>
 
-          <Link to="/courses">Продължи обучението</Link>
+          <div className="dashboard-welcome-actions">
+            <Link to="/courses">Продължи обучението</Link>
+
+            {canGenerateCertificate && (
+              <Link to="/certificate" className="welcome-certificate-button">
+                🏅 Значка за завършване
+              </Link>
+            )}
+          </div>
         </div>
 
-        {canGenerateCertificate && (
-          <Link to="/certificate" className="welcome-certificate-button">
-            🏅 Значка за завършване
-          </Link>
-        )}
-
-        <div className="welcome-visual">
+        <div className="dashboard-progress-card">
+          <span>Общ прогрес</span>
           <strong>{courseProgress}%</strong>
-          <span>общ прогрес</span>
+
+          <div className="dashboard-progress-bar">
+            <div style={{ width: `${courseProgress}%` }} />
+          </div>
+
+          <p>
+            {completedCourses.length} от {courses.length} модула са завършени
+          </p>
         </div>
       </section>
 
@@ -175,30 +185,13 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className="badges-section">
-        <div className="badges-header">
-          <h2>Постижения</h2>
-          <p>Отключвай значки, докато напредваш.</p>
-        </div>
-
-        <div className="badges-grid">
-          {badges.map((badge) => (
-            <div
-              key={badge.title}
-              className={`badge-card ${badge.unlocked ? "unlocked" : "locked"}`}
-            >
-              <span>{badge.icon}</span>
-
-              <strong>{badge.title}</strong>
-
-              <small>{badge.unlocked ? "Отключена" : "Заключена"}</small>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="dashboard-grid">
+      <section className="dashboard-main-grid">
         <div className="dashboard-chart-box">
+          <div className="dashboard-section-header">
+            <p>Статистика</p>
+            <h2>Резултати от тестове</h2>
+          </div>
+
           {results.length > 0 ? (
             <ResultsChart results={results} />
           ) : (
@@ -208,17 +201,47 @@ const Dashboard = () => {
           )}
         </div>
 
-        {latestResult && (
-          <div className="latest-result-card">
-            <p>Последен тест</p>
-            <h2>
-              {latestCourse
-                ? latestCourse.title
-                : `Модул #${latestResult.courseId}`}
-            </h2>
-            <strong>{latestResult.percentage}%</strong>
-          </div>
-        )}
+        <div className="latest-result-card">
+          <p>Последен тест</p>
+
+          {latestResult ? (
+            <>
+              <h2>
+                {latestCourse
+                  ? latestCourse.title
+                  : `Модул #${latestResult.courseId}`}
+              </h2>
+
+              <strong>{latestResult.percentage}%</strong>
+            </>
+          ) : (
+            <>
+              <h2>Няма резултат</h2>
+              <strong>0%</strong>
+            </>
+          )}
+        </div>
+      </section>
+
+      <section className="badges-section">
+        <div className="badges-header">
+          <p>Постижения</p>
+          <h2>Твоите значки</h2>
+          <span>Отключвай значки, докато напредваш в обучението.</span>
+        </div>
+
+        <div className="badges-grid">
+          {badges.map((badge) => (
+            <div
+              key={badge.title}
+              className={`badge-card ${badge.unlocked ? "unlocked" : "locked"}`}
+            >
+              <span>{badge.icon}</span>
+              <strong>{badge.title}</strong>
+              <small>{badge.unlocked ? "Отключена" : "Заключена"}</small>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="course-progress-section">
@@ -231,19 +254,13 @@ const Dashboard = () => {
           <strong>{courseProgress}%</strong>
         </div>
 
-        <div className="dashboard-progress-bar">
-          <div style={{ width: `${courseProgress}%` }} />
-        </div>
-
         <div className="course-progress-list">
           {courses.map((course) => {
             const isCompleted = uniqueCompletedCourseIds.includes(course.id);
 
             return (
               <div
-                className={`course-progress-item ${
-                  isCompleted ? "completed" : ""
-                }`}
+                className={`course-progress-item ${isCompleted ? "completed" : ""}`}
                 key={course.id}
               >
                 <span>{isCompleted ? "✓" : "→"}</span>
